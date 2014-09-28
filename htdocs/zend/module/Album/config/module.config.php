@@ -9,54 +9,28 @@
 
 return array(
 	'router' => array(
+	
+	
 		'routes' => array(
-				'home' => array(
-					'type' => 'Zend\Mvc\Router\Http\Literal',
-					'options' => array(
-						'route'    => '/',
-						'defaults' => array(
-							'controller' => 'Album\Controller\Album',
-							'action'     => 'index',
-						),
+		
+			'home' => array(
+				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'options' => array(
+					'route'    => '/',
+					'defaults' => array(
+						'controller' => 'Album\Controller\Album',
+						'action'     => 'index',
 					),
 				),
+			),
+			
 				
-				/*'teste' => array(
-					'type'    => 'Literal',
-					'options' => array(
-						'route'    => '/application',
-						'defaults' => array(
-							'__NAMESPACE__' => 'Application\Controller',
-							'controller'    => 'Index',
-							'action'        => 'teste',
-						),
-					),
-					'may_terminate' => true,
-					'child_routes' => array(
-						'default' => array(
-							'type'    => 'Segment',
-							'options' => array(
-								'route'    => '/[:controller[/:action]]',
-								'constraints' => array(
-									'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-									'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
-								),
-								'defaults' => array(
-								),
-							),
-						),
-					),
-				),	*/
-            // The following is a route to simplify getting started creating
-            // new controllers and actions without needing to create a new
-            // module. Simply drop new controllers in, and you can access them
-            // using the path /application/:controller/:action
-            'application' => array(
+            'album' => array(
                 'type'    => 'Literal',
                 'options' => array(
-                    'route'    => '/application',
+                    'route'    => '/album',
                     'defaults' => array(
-                        '__NAMESPACE__' => 'Application\Controller',
+                        '__NAMESPACE__' => 'Album\Controller',
                         'controller'    => 'Index',
                         'action'        => 'index',
                     ),
@@ -76,8 +50,11 @@ return array(
                         ),
                     ),
                 ),
-            ),
+            ),			
         ),
+		
+		
+		
     ),
     'service_manager' => array(
         'abstract_factories' => array(
@@ -89,7 +66,7 @@ return array(
         ),
     ),
     'translator' => array(
-        'locale' => 'en_US',
+        'locale' => 'pt_BR',
         'translation_file_patterns' => array(
             array(
                 'type'     => 'gettext',
@@ -100,8 +77,7 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Application\Controller\Index' => 'Application\Controller\IndexController',
-            'Application\Controller\Teste' => 'Application\Controller\IndexController'
+            'Album\Controller\Album' => 'Album\Controller\AlbumController',
         ),
     ),
     'view_manager' => array(
@@ -112,7 +88,7 @@ return array(
         'exception_template'       => 'error/index',
         'template_map' => array(
             'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',
-            'application/index/index' => __DIR__ . '/../view/application/index/index.phtml',
+            'application/index/index' => __DIR__ . '/../view/album/index/index.phtml',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
         ),

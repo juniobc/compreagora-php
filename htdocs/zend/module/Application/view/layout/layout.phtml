@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <?php echo $this->headTitle('ZF2 '. $this->translate('Skeleton Application'))->setSeparator(' - ')->setAutoEscape(false) ?>
+        <?php echo $this->headTitle('Quero')->setSeparator(' - ')->setAutoEscape(false) ?>
 
         <?php echo $this->headMeta()
             ->appendName('viewport', 'width=device-width, initial-scale=1.0')
@@ -19,14 +19,169 @@
         <!-- Scripts -->
         <?php echo $this->headScript()
             ->prependFile($this->basePath() . '/js/bootstrap.min.js')
-            ->prependFile($this->basePath() . '/js/jquery.min.js')
-            ->prependFile($this->basePath() . '/js/respond.min.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+            ->prependFile($this->basePath() . '/js/jquery.min.js')	
+            ->prependFile($this->basePath() . '/js/less-1.3.3.min.js')
             ->prependFile($this->basePath() . '/js/html5shiv.js',   'text/javascript', array('conditional' => 'lt IE 9',))
         ; ?>
+		
+		<script language="Javascript" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+		
+		<script type="text/javascript">
+    /*Global*/
+	var map;
+    function initialize() {
+		var latLng = new google.maps.LatLng(-16.6428184, -49.2624666);   
+		/*Basic Setup*/
+			var myOptions = {
+			panControl: false,
+			zoomControl: true,
+			zoomControlOptions: {
+				style: google.maps.ZoomControlStyle.SMALL,
+				position: google.maps.ControlPosition.LEFT_CENTER
+			},
+			mapTypeControl: true,
+			scaleControl: false,
+			streetViewControl: false,
+			overviewMapControl: false,
+			draggable: true,
+			disableDoubleClickZoom: false, //disable zooming
+			scrollwheel: false,
+			zoom: 13,
+			center: latLng,
+			mapTypeId: google.maps.MapTypeId.ROADMAP // ROADMAP; SATELLITE; HYBRID; TERRAIN;
+			};
+			map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+			/*MARKER*/
+			var markerlatlng = new google.maps.LatLng(41.843187912573065, 12.387517587358843);
+			var marker = new google.maps.Marker({
+			position: markerlatlng,
+			});
+			marker.setMap(map);
+			/*INFO Bubble
+			myInfoWindowOptions = {
+			content: '<div class="info-window-content"><h4>XXXXX</h4></div>',
+			maxWidth: 300,
+			height: 20
+			};
+			infoWindow = new google.maps.InfoWindow(myInfoWindowOptions);*/
+			google.maps.event.addListener(marker, 'click', function() {
+			infoWindow.open(map,marker);
+			});
+			google.maps.event.addListener(marker, 'dragstart', function(){
+			infoWindow.close();
+			});
+			infoWindow.open(map,marker)
+	}//end initialize
+    /*onLoad*/
+    $(function(){
+    initialize();
+    });
+    </script>
+	
+	<style type="text/css">
+    #canvas_holder{
+		left: 0px;
+		width:100%;
+		height:100%;
+		z-index: -1;
+    }
+    #map_canvas{
+		width:100%;
+		height:400px;
+    }
+	.navbar-default {
+		background-color: #F6F7F7;
+		border-color: #F6F7F7;
+	}
+    </style>
 
     </head>
-    <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<body style="background-color:#F6F7F7">
+	
+<div class="row clearfix">
+
+	<div class="col-md-12 column">
+		
+		<nav class="collapse navbar-collapse navbar-fixed-top navbar-default" role="navigation">
+		  <ul class="nav navbar-nav">
+			<li>
+			  <a style="color:#3C763D" class="navbar-brand" href="../getting-started">Quero</a>
+			</li>
+		  </ul>
+		  <ul class="nav navbar-nav navbar-right">
+			<li><a style="color:#3C763D" href="http://expo.getbootstrap.com" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Expo');">Cadastrar</a></li>
+			<li><a style="color:#3C763D" href="http://blog.getbootstrap.com" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Blog');">Entrar</a></li>
+		  </ul>
+		  
+			<form class="form-inline navbar-right" role="form">
+
+				<div class="form-group">
+					<label class="sr-only" for="exampleInputEmail2">Produto</label>
+					<input type="email" class="form-control input-lg" id="exampleInputEmail2" placeholder="Produto">
+				</div>
+
+				<button type="submit" class="btn btn-success">Localizar</button>
+
+			</form>
+		  
+		</nav>
+  
+	</div>
+	
+	
+	
+	
+	<?php echo $this->content; ?>
+	
+	
+	<footer style="background-color:#252525" >
+			<div class="container inner">
+				<div class="row">
+					
+					<div class="col-md-3 col-sm-6 inner">
+						<h4 style="color:white; font-family:sans-serif">Who we are</h4>
+						<a href="index.html"><img alt="" src="assets/images/logo-white.svg" class="logo img-intext"></a>
+						<p style="color:#a3b1bf">Magnis modipsae voloratati andigen daepeditem quiate re porem que aut labor. Laceaque eictemperum quiae sitiorem rest non restibusaes maio es dem tumquam.</p>
+						<a class="txt-btn" href="about.html">More about us</a>
+					</div><!-- /.col -->
+					
+					<div class="col-md-3 col-sm-6 inner">
+						<h4 style="color:white; font-family:sans-serif">Latest works</h4>	
+					</div><!-- /.col -->
+					
+					
+					<div class="col-md-3 col-sm-6 inner">
+						<h4 style="color:white; font-family:sans-serif">Get In Touch</h4>
+						<p style="color:#a3b1bf">Doloreiur quia commolu ptatemp dolupta oreprerum tibusam eumenis et consent accullignis dentibea autem inisita.</p>
+						<ul class="contacts">
+							<li><i class="icon-location contact"></i> 84 Street, City, State 24813</li>
+							<li><i class="icon-mobile contact"></i> +00 (123) 456 78 90</li>
+							<li><a href="#"><i class="icon-mail-1 contact"></i> info@reen.com</a></li>
+						</ul><!-- /.contacts -->
+					</div><!-- /.col -->
+					
+					<div class="col-md-3 col-sm-6 inner">
+						<h4 style="color:white; font-family:sans-serif">Contato</h4>
+						
+							<img alt="" src="http://www.themeparktourist.com/images/facebook-icon-small.png" />
+							<img width="35" height="35" alt="" src="http://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Google_Plus_Shiny_Icon.svg/256px-Google_Plus_Shiny_Icon.svg.png" />
+							
+							<img width="35" height="35" alt="" src="http://acmrio.org.br/engenho/wp-content/themes/Broadcast/images/twitter-icon.png" />
+							
+						
+					</div><!-- /.col -->
+					
+				</div><!-- /.row --> 
+			</div><!-- .container -->
+		  
+			
+		</footer>
+
+</div>
+	
+	
+       <!-- <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -34,22 +189,23 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="<?php echo $this->url('home') ?>"><img src="<?php echo $this->basePath('img/zf2-logo.png') ?>" alt="Zend Framework 2"/>&nbsp;<?php echo $this->translate('Skeleton Application') ?></a>
+                    <a class="navbar-brand" href="<?php //echo $this->url('home') ?>"><img src="<?php //echo $this->basePath('img/zf2-logo.png') ?>" alt="Zend Framework 2"/>&nbsp;<?php //echo $this->translate('Skeleton Application') ?></a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home') ?></a></li>
+                        <li class="active"><a href="<?php //echo $this->url('home') ?>"><?php //echo $this->translate('Home') ?></a></li>
                     </ul>
-                </div><!--/.nav-collapse -->
+                </div>
             </div>
         </nav>
         <div class="container">
-            <?php echo $this->content; ?>
+            <?php //echo $this->content; ?>
             <hr>
             <footer>
-                <p>&copy; 2005 - <?php echo date('Y') ?> by Zend Technologies Ltd. <?php echo $this->translate('All rights reserved.') ?></p>
+                <p>&copy; 2005 - <?php //echo date('Y') ?> by Zend Technologies Ltd. <?php//echo $this->translate('All rights reserved.') ?></p>
             </footer>
-        </div> <!-- /container -->
-        <?php echo $this->inlineScript() ?>
+        </div> 
+        <?php //echo $this->inlineScript() ?> 
+		-->
     </body>
 </html>
