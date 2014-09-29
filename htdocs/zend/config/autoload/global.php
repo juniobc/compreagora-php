@@ -12,5 +12,14 @@
  */
 
 return array(
-    // ...
+    'db' => array(
+         'driver'         => 'Pdo',
+         'dsn'            => 'pgsql:host=127.0.0.1;dbname=zf2tutorial;port=5432',
+     ),
+     'service_manager' => array(
+         'factories' => array(
+             'Zend\Db\Adapter\Adapter'
+                     => 'Zend\Db\Adapter\AdapterServiceFactory',
+         ),
+     ),
 );

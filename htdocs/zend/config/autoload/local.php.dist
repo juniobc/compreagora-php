@@ -12,4 +12,10 @@
  */
 
 return array(
+
+	'db' => array(
+         'username' => 'postgres',
+         'password' => 'teste123',
+     ),
+
 );
