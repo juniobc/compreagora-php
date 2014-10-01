@@ -101,7 +101,8 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Application\Controller\Index' => 'Application\Controller\IndexController',
-            'Application\Controller\Teste' => 'Application\Controller\IndexController'
+            'Application\Controller\Service' => 'Application\Controller\ServiceController',
+            'Application\Controller\ClienteService' => 'Application\Controller\ClienteServiceController'
         ),
     ),
     'view_manager' => array(

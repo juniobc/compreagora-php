@@ -3,7 +3,7 @@
 date_default_timezone_set('America/Sao_Paulo');
 
 if ($_SERVER['APPLICATION_ENV'] == 'development') {
-	error_reporting(E_ALL);
+	error_reporting(E_ALL | E_STRICT);
 	ini_set('display_errors', '1');
 	ini_set('error_log','/log/php_errors.txt');
 }
