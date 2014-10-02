@@ -1,3 +1,5 @@
+<div class="container">
+
 <?php
 
  $title = 'My albums';
@@ -5,7 +7,7 @@
  ?>
  <h1><?php echo $this->escapeHtml($title); ?></h1>
  <p>
-     <a href="<?php echo $this->url('album', array('action'=>'add'));?>">Add new album</a>
+     <a href="<?php echo $this->url('album', array('controller' => 'album', 'action'=>'add'));?>">Add new album</a>
  </p>
 
  <table class="table">
@@ -27,3 +29,5 @@
  </tr>
  <?php endforeach; ?>
  </table>
+ 
+ </div>

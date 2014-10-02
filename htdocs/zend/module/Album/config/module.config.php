@@ -22,35 +22,23 @@ return array(
 						'action'     => 'index',
 					),
 				),
-			),
-			
+			),		
 				
-            'album' => array(
-                'type'    => 'Literal',
-                'options' => array(
-                    'route'    => '/album',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'Album\Controller',
-                        'controller'    => 'Index',
-                        'action'        => 'index',
-                    ),
-                ),
-                'may_terminate' => true,
-                'child_routes' => array(
-                    'default' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/[:controller[/:action]]',
-                            'constraints' => array(
-                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
-                            ),
-                            'defaults' => array(
-                            ),
-                        ),
-                    ),
-                ),
-            ),			
+			 'album' => array(
+                 'type'    => 'segment',
+                 'options' => array(
+                     'route'    => '/album[/][:action][/:id]',
+                     'constraints' => array(
+                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                         'id'     => '[0-9]+',
+                     ),
+                     'defaults' => array(
+                         'controller' => 'Album\Controller\Album',
+                         'action'     => 'index',
+                     ),
+                 ),
+             ),
+			
         ),
 		
 		
@@ -88,7 +76,7 @@ return array(
         'exception_template'       => 'error/index',
         'template_map' => array(
             'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',
-            'application/index/index' => __DIR__ . '/../view/album/index/index.phtml',
+            'application/index/index' => __DIR__ . '/../view/album/index.phtml',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
         ),
