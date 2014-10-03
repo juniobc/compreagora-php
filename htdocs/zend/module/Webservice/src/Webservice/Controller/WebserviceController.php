@@ -10,31 +10,18 @@ class WebserviceController extends AbstractActionController{
 
 	protected $cadastraProdutoTable;
 
-	public function indexAction(){
-	
-		echo "indexAction";
-		exit(1);
-	
-		return $this->redirect()->toRoute('webservice', array(
-			'action' => 'requisicao'
-		));
-	
-		//if (isset($_GET['wsdl'])) {
-        //    $this->handleWSDL();
-        //} else {
-        //    $this->handleSOAP();
-        //}
-        //
-        //$view = new ViewModel();
-        //$view->setTerminal(true);
-        //exit();
-	
-	}
+	public function indexAction(){}
 	
 	public function requisicaoAction(){
 	
-		echo "requisicaoAction";
-		exit(1);
+		if (isset($_GET['wsdl'])) {
+            $this->handleWSDL();
+        } else {
+           // $this->handleSOAP();
+        }
+        
+        //$view = new ViewModel();
+        //$view->setTerminal(true);
 	
 	}
 
@@ -45,7 +32,7 @@ class WebserviceController extends AbstractActionController{
          * Criamos um novo diretorio chamado Service e criamos a class OlaMundo
          * depois setamos a classe no autodiscover no metodo setClass
          */
-        $autodiscover->setClass('\Application\Service\OlaMundo');
+        $autodiscover->setClass('\Webservice\Service\OlaMundo');
         
         // Setamos o Uri de retorno sem o parâmetro ?wdsl
         $autodiscover->setUri('http://127.0.0.1/application/service');

@@ -32,7 +32,7 @@ return array(
                     'defaults' => array(
                         '__NAMESPACE__' => 'Webservice\Controller',
                         'controller'    => 'Webservice',
-                        'action'        => 'index',
+                        'action'        => 'requisicao',
                     ),
                 ),
                 'may_terminate' => true,
@@ -74,7 +74,7 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Webservice\Controller\Index' => 'Webservice\Controller\WebserviceController'
+            'Webservice\Controller\Webservice' => 'Webservice\Controller\WebserviceController'
         ),
     ),
     'view_manager' => array(

@@ -19,10 +19,7 @@ class AlbumController extends AbstractActionController{
 	protected $albumTable;
 
 	public function indexAction(){
-		
-		phpinfo();
-		exit("teste15615");
-	
+			
 		return new ViewModel(array(
              'albums' => $this->getAlbumTable()->fetchAll(),
         ));

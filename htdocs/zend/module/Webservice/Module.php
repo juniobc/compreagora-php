@@ -48,4 +48,23 @@ class Module
             ),
         );
     }
+	
+	public function getServiceConfig()
+    {
+         return array(
+             'factories' => array(
+                 'Webservice\Model\Produto' =>  function($sm) {
+                     $tableGateway = $sm->get('WebserviceTableGateway');
+                     $table = new AlbumTable($tableGateway);
+                     return $table;
+                 },
+                 'AlbumTableGateway' => function ($sm) {
+                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                     $resultSetPrototype = new ResultSet();
+                     $resultSetPrototype->setArrayObjectPrototype(new Album());
+                     return new TableGateway('album', $dbAdapter, null, $resultSetPrototype);
+                 },
+             ),
+         );
+     }
 }

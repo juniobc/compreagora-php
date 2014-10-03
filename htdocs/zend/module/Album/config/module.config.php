@@ -8,8 +8,7 @@
  */
 
 return array(
-	'router' => array(
-	
+	'router' => array(	
 	
 		'routes' => array(
 		
@@ -24,7 +23,7 @@ return array(
 				),
 			),		
 				
-			 'album' => array(
+			'album' => array(
                  'type'    => 'segment',
                  'options' => array(
                      'route'    => '/album[/][:action][/:id]',
