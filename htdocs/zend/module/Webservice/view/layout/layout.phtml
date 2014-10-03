@@ -12,6 +12,7 @@
 
         <!-- Le styles -->
         <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
+                        ->prependStylesheet($this->basePath() . '/css/style.css')
                         ->prependStylesheet($this->basePath() . '/css/bootstrap-theme.min.css')
                         ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css') ?>
 
@@ -98,126 +99,86 @@
     </head>
 <body style="background-color:#F6F7F7">
 	
-		<div class="col-md-12 column">
-			<nav class="navbar navbar-default" role="navigation">
-				<div class="navbar-header">
-					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">Brand</a>
+<div class="row clearfix">
+
+	<div class="col-md-12 column">
+		
+		<nav class="collapse navbar-collapse navbar-fixed-top navbar-default" role="navigation">
+		  <ul class="nav navbar-nav">
+			<li>
+			  <a style="color:#3C763D" class="navbar-brand" href="../getting-started">Quero</a>
+			</li>
+		  </ul>
+		  <ul class="nav navbar-nav navbar-right">
+			<li><a style="color:#3C763D" href="http://expo.getbootstrap.com" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Expo');">Cadastrar</a></li>
+			<li><a style="color:#3C763D" href="http://blog.getbootstrap.com" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Blog');">Entrar</a></li>
+		  </ul>
+		  
+			<form class="form-inline navbar-right" role="form">
+
+				<div class="form-group">
+					<label class="sr-only" for="exampleInputEmail2">Produto</label>
+					<input type="email" class="form-control input-lg" id="exampleInputEmail2" placeholder="Produto">
 				</div>
-				
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-						<li class="active">
-							<a href="#">Link</a>
-						</li>
-						<li>
-							<a href="#">Link</a>
-						</li>
-						<li class="dropdown">
-							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
-							<ul class="dropdown-menu">
-								<li>
-									<a href="#">Action</a>
-								</li>
-								<li>
-									<a href="#">Another action</a>
-								</li>
-								<li>
-									<a href="#">Something else here</a>
-								</li>
-								<li class="divider">
-								</li>
-								<li>
-									<a href="#">Separated link</a>
-								</li>
-								<li class="divider">
-								</li>
-								<li>
-									<a href="#">One more separated link</a>
-								</li>
-							</ul>
-						</li>
-					</ul>
-					<form class="navbar-form navbar-left" role="search">
-						<div class="form-group">
-							<input type="text" class="form-control" />
-						</div> <button type="submit" class="btn btn-default">Submit</button>
-					</form>
-					<ul class="nav navbar-nav navbar-right">
-						<li>
-							<a href="#">Link</a>
-						</li>
-						<li class="dropdown">
-							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
-							<ul class="dropdown-menu">
-								<li>
-									<a href="#">Action</a>
-								</li>
-								<li>
-									<a href="#">Another action</a>
-								</li>
-								<li>
-									<a href="#">Something else here</a>
-								</li>
-								<li class="divider">
-								</li>
-								<li>
-									<a href="#">Separated link</a>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-				
-			</nav>
-		</div>
+
+				<button type="submit" class="btn btn-success">Localizar</button>
+
+			</form>
+		  
+		</nav>
+  
+	</div>
+	
 	
 	
 	
 	<?php echo $this->content; ?>
 	
 	
-	<footer style="background-color:#252525; margin-top:20%;" >
-		<div class="container inner">
-			<div class="row">
-				
-				<div class="col-md-3 col-sm-6 inner">
-					<h4 style="color:white; font-family:sans-serif">Who we are</h4>
-					<a href="index.html"></a>
-					<p style="color:#a3b1bf">Magnis modipsae voloratati andigen daepeditem quiate re porem que aut labor. Laceaque eictemperum quiae sitiorem rest non restibusaes maio es dem tumquam.</p>
-					<a class="txt-btn" href="about.html">More about us</a>
-				</div><!-- /.col -->
-				
-				<div class="col-md-3 col-sm-6 inner">
-					<h4 style="color:white; font-family:sans-serif">Latest works</h4>	
-				</div><!-- /.col -->
-				
-				
-				<div class="col-md-3 col-sm-6 inner">
-					<h4 style="color:white; font-family:sans-serif">Get In Touch</h4>
-					<p style="color:#a3b1bf">Doloreiur quia commolu ptatemp dolupta oreprerum tibusam eumenis et consent accullignis dentibea autem inisita.</p>
-					<ul class="contacts">
-						<li><i class="icon-location contact"></i> 84 Street, City, State 24813</li>
-						<li><i class="icon-mobile contact"></i> +00 (123) 456 78 90</li>
-						<li><a href="#"><i class="icon-mail-1 contact"></i> info@reen.com</a></li>
-					</ul><!-- /.contacts -->
-				</div><!-- /.col -->
-				
-				<div class="col-md-3 col-sm-6 inner">
-					<h4 style="color:white; font-family:sans-serif">Contato</h4>
+	<footer style="background-color:#252525" >
+			<div class="container inner">
+				<div class="row">
 					
-						<img alt="" src="http://www.themeparktourist.com/images/facebook-icon-small.png" />
-						<img width="35" height="35" alt="" src="http://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Google_Plus_Shiny_Icon.svg/256px-Google_Plus_Shiny_Icon.svg.png" />
-						
-						<img width="35" height="35" alt="" src="http://acmrio.org.br/engenho/wp-content/themes/Broadcast/images/twitter-icon.png" />
-						
+					<div class="col-md-3 col-sm-6 inner">
+						<h4 style="color:white; font-family:sans-serif">Who we are</h4>
+						<a href="index.html"><img alt="" src="assets/images/logo-white.svg" class="logo img-intext"></a>
+						<p style="color:#a3b1bf">Magnis modipsae voloratati andigen daepeditem quiate re porem que aut labor. Laceaque eictemperum quiae sitiorem rest non restibusaes maio es dem tumquam.</p>
+						<a class="txt-btn" href="about.html">More about us</a>
+					</div><!-- /.col -->
 					
-				</div><!-- /.col -->
-				
-			</div><!-- /.row --> 
-		</div><!-- .container -->
-	  
-		
-	</footer>
+					<div class="col-md-3 col-sm-6 inner">
+						<h4 style="color:white; font-family:sans-serif">Latest works</h4>	
+					</div><!-- /.col -->
+					
+					
+					<div class="col-md-3 col-sm-6 inner">
+						<h4 style="color:white; font-family:sans-serif">Get In Touch</h4>
+						<p style="color:#a3b1bf">Doloreiur quia commolu ptatemp dolupta oreprerum tibusam eumenis et consent accullignis dentibea autem inisita.</p>
+						<ul class="contacts">
+							<li><i class="icon-location contact"></i> 84 Street, City, State 24813</li>
+							<li><i class="icon-mobile contact"></i> +00 (123) 456 78 90</li>
+							<li><a href="#"><i class="icon-mail-1 contact"></i> info@reen.com</a></li>
+						</ul><!-- /.contacts -->
+					</div><!-- /.col -->
+					
+					<div class="col-md-3 col-sm-6 inner">
+						<h4 style="color:white; font-family:sans-serif">Contato</h4>
+						
+							<img alt="" src="http://www.themeparktourist.com/images/facebook-icon-small.png" />
+							<img width="35" height="35" alt="" src="http://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Google_Plus_Shiny_Icon.svg/256px-Google_Plus_Shiny_Icon.svg.png" />
+							
+							<img width="35" height="35" alt="" src="http://acmrio.org.br/engenho/wp-content/themes/Broadcast/images/twitter-icon.png" />
+							
+						
+					</div><!-- /.col -->
+					
+				</div><!-- /.row --> 
+			</div><!-- .container -->
+		  
+			
+		</footer>
+
+</div>
 	
 	
        <!-- <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
