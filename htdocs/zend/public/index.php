@@ -10,9 +10,6 @@ if ($_SERVER['APPLICATION_ENV'] == 'development') {
 	
 }
 
-phpinfo();
-exit(1);
-
 
 /**
  * This makes our life easier when dealing with paths. Everything is relative

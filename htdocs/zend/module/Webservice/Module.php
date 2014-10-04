@@ -11,6 +11,10 @@ namespace Webservice;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
+use Webservice\Model\Produto;
+use Webservice\Model\ProdutoTable;
+use Zend\Db\ResultSet\ResultSet;
+use Zend\Db\TableGateway\TableGateway;
 
 class Module
 {
@@ -53,16 +57,16 @@ class Module
     {
          return array(
              'factories' => array(
-                 'Webservice\Model\Produto' =>  function($sm) {
-                     $tableGateway = $sm->get('WebserviceTableGateway');
-                     $table = new AlbumTable($tableGateway);
+                 'Webservice\Model\ProdutoTable' =>  function($sm) {
+                     $tableGateway = $sm->get('ProdutoTableGateway');
+                     $table = new ProdutoTable($tableGateway);
                      return $table;
                  },
-                 'AlbumTableGateway' => function ($sm) {
+                 'ProdutoTableGateway' => function ($sm) {
                      $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                      $resultSetPrototype = new ResultSet();
-                     $resultSetPrototype->setArrayObjectPrototype(new Album());
-                     return new TableGateway('album', $dbAdapter, null, $resultSetPrototype);
+                     $resultSetPrototype->setArrayObjectPrototype(new Produto());
+                     return new TableGateway('produto', $dbAdapter, null, $resultSetPrototype);
                  },
              ),
          );

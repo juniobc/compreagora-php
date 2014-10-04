@@ -51,6 +51,32 @@ return array(
                     ),
                 ),
             ),
+			'cadastroproduto' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/webservice',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Webservice\Controller',
+                        'controller'    => 'CadastraProduto',
+                        'action'        => 'index',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'default' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/[:controller[/:action]]',
+                            'constraints' => array(
+                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ),
+                            'defaults' => array(
+                            ),
+                        ),
+                    ),
+                ),
+            ),
         ),
     ),
     'service_manager' => array(
@@ -74,7 +100,8 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Webservice\Controller\Webservice' => 'Webservice\Controller\WebserviceController'
+            'Webservice\Controller\Webservice' => 'Webservice\Controller\WebserviceController',
+            'Webservice\Controller\Cadastroproduto' => 'Webservice\Controller\CadastroProdutoController'
         ),
     ),
     'view_manager' => array(

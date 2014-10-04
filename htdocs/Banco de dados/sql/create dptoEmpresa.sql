@@ -6,7 +6,8 @@ create table dptoEmpresa(
 	descricao varchar(30) not null,
 	dt_cadstro date,
 	qt_usuario smallint,
-	id_empresa int references empresa(id_empresa)
+	id_empresa int references empresa(id_empresa),
+	id_endereco int references endereco(id_endereco)
 
 );
 

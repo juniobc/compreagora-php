@@ -3,7 +3,6 @@
 create table produto(
  
 	id_produto int DEFAULT nextval('sq_id_produto') primary key not null UNIQUE,
-	id_endereco int references endereco(id_endereco),
 	cd_catalogo int references catalogo(cd_catalogo),
 	vl_produto float not null,
 	ds_produto varchar(100) not null
