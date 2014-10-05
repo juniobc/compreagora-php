@@ -10,6 +10,7 @@
 return array(
 	'router' => array(
 		'routes' => array(
+		
 				'home' => array(
 					'type' => 'Zend\Mvc\Router\Http\Literal',
 					'options' => array(
@@ -87,6 +88,11 @@ return array(
         'aliases' => array(
             'translator' => 'MvcTranslator',
         ),
+		'invokables' => array(
+		
+			'cadastroproduto' => 'Webservice\Service\CadastroProduto',
+		
+		),
     ),
     'translator' => array(
         'locale' => 'en_US',

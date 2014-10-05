@@ -4,6 +4,8 @@ namespace Webservice\Service;
 
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\View\Model\ViewModel;
+use Webservice\Model\Produto; 
 
 
 class CadastroProduto implements ServiceLocatorAwareInterface{
@@ -25,8 +27,16 @@ class CadastroProduto implements ServiceLocatorAwareInterface{
      */
     public function OlaMundo()
     {
-		//$router = $this->getServiceLocator()->get('Webservice\Model\ProdutoTable');
-        return "Olá Mundo";
+	
+		$produtos = $this->getProdutoTable()->fetchAll();
+	
+		foreach ($produtos as $produto) :
+		
+			$teste = $produto->ds_produto;
+		
+		endforeach;
+	
+		return $teste;
     }
     
     /**
@@ -35,5 +45,13 @@ class CadastroProduto implements ServiceLocatorAwareInterface{
     public function welcame($nome) {
         return "Ola $nome, Seja bem vindo ao WebServer";
     }   
+	
+	public function getProdutoTable(){
+         if (!$this->albumTable) {
+             $sm = $this->getServiceLocator();
+             $this->albumTable = $sm->get('Webservice\Model\ProdutoTable');
+         }
+         return $this->albumTable;
+    }
 	
 }

@@ -8,7 +8,7 @@ use Zend\Soap\AutoDiscover;
  
 class WebserviceController extends AbstractActionController{
 
-	private $_WSDL_URI = "http://127.0.0.1:8080/webservice/webservice?wsdl";
+	private $_WSDL_URI = "http://127.0.0.1:8080/webservice/webservice/requisicao?wsdl";
 
 	public function indexAction(){}
 	
@@ -30,7 +30,7 @@ class WebserviceController extends AbstractActionController{
         
         $autodiscover->setClass('\Webservice\Service\CadastroProduto');
         
-        $autodiscover->setUri('http://127.0.0.1:8080/webservice/webservice');
+        $autodiscover->setUri('http://127.0.0.1:8080/webservice/webservice/requisicao');
         $wsdl = $autodiscover->generate();
 		$wsdl->dump("Soap/wsdl/file.wsdl");
         $wsdl = $wsdl->toDomDocument();
