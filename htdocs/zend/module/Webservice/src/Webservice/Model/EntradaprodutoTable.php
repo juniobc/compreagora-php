@@ -36,6 +36,7 @@ namespace Webservice\Model;
 
      public function saveEntradaproduto(Entradaproduto $ent_prod)
      {
+	 
          $data = array(
              'id_dptoempresa' => $ent_prod->id_dptoempresa,
              'id_produto'  => $ent_prod->id_produto,

@@ -65,7 +65,7 @@ class Module
     {
          return array(
              'factories' => array(
-                 'Webservice\Model\ProdutoTable' =>  function($sm) {
+                 'Application\Model\ProdutoTable' =>  function($sm) {
                      $tableGateway = $sm->get('ProdutoTableGateway');
                      $table = new ProdutoTable($tableGateway);
                      return $table;
@@ -76,7 +76,7 @@ class Module
                      $resultSetPrototype->setArrayObjectPrototype(new Produto());
                      return new TableGateway('produto', $dbAdapter, null, $resultSetPrototype);
                  },
-				 'Webservice\Model\EnderecoTable' =>  function($sm) {
+				 'Application\Model\EnderecoTable' =>  function($sm) {
                      $tableGateway = $sm->get('EnderecoTableGateway');
                      $table = new EnderecoTable($tableGateway);
                      return $table;
@@ -87,7 +87,7 @@ class Module
                      $resultSetPrototype->setArrayObjectPrototype(new Endereco());
                      return new TableGateway('endereco', $dbAdapter, null, $resultSetPrototype);
                  },
-				 'Webservice\Model\EmpresaTable' =>  function($sm) {
+				 'Application\Model\EmpresaTable' =>  function($sm) {
                      $tableGateway = $sm->get('EmpresaTableGateway');
                      $table = new EmpresaTable($tableGateway);
                      return $table;
@@ -98,7 +98,7 @@ class Module
                      $resultSetPrototype->setArrayObjectPrototype(new Empresa());
                      return new TableGateway('empresa', $dbAdapter, null, $resultSetPrototype);
                  },
-				 'Webservice\Model\DepartamentoTable' =>  function($sm) {
+				 'Application\Model\DepartamentoTable' =>  function($sm) {
                      $tableGateway = $sm->get('DepartamentoTableGateway');
                      $table = new DepartamentoTable($tableGateway);
                      return $table;
@@ -109,7 +109,7 @@ class Module
                      $resultSetPrototype->setArrayObjectPrototype(new Departamento());
                      return new TableGateway('departamento', $dbAdapter, null, $resultSetPrototype);
                  },
-				 'Webservice\Model\EntradaprodutoTable' =>  function($sm) {
+				 'Application\Model\EntradaprodutoTable' =>  function($sm) {
                      $tableGateway = $sm->get('EntradaprodutoTableGateway');
                      $table = new EntradaprodutoTable($tableGateway);
                      return $table;

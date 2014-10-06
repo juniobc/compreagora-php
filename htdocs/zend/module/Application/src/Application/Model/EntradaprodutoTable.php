@@ -35,7 +35,7 @@ namespace Application\Model;
 		
 		$linhas = $linhas->execute();
 		
-		return $linhas->toArray();
+		return $linhas;
 	
 	}
 

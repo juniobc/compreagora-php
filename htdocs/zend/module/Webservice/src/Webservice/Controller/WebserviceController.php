@@ -6,6 +6,7 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Zend\Soap\AutoDiscover;
 use Webservice\Service\CadastroProduto;
+use Webservice\Service\OlaMundo;
 use Webservice\Model\Produto; 
 use Webservice\Model\Endereco; 
 use Webservice\Model\Empresa;
@@ -14,7 +15,7 @@ use Webservice\Model\Entradaproduto;
  
 class WebserviceController extends AbstractActionController{
 
-	private $_WSDL_URI = "http://127.0.0.1:8080/webservice/webservice/requisicao?wsdl";
+	private $_WSDL_URI = "http://10.52.64.130/webservice/webservice/requisicao?wsdl";
 	
 	protected $produtoTable;
 	protected $enderecoTable;
@@ -22,7 +23,11 @@ class WebserviceController extends AbstractActionController{
 	protected $departamentoTable;
 	protected $entradaprodutoTable;
 
-	public function indexAction(){}
+	public function indexAction(){
+	
+		exit(1);
+	
+	}
 	 
 	public function requisicaoAction(){
 	
@@ -36,13 +41,26 @@ class WebserviceController extends AbstractActionController{
         $view->setTerminal(true);
 	
 	}
+	
+	public function requisicao2Action(){
+	
+		if (isset($_GET['wsdl'])) {
+            $this->handle2WSDL();
+        } else {
+            $this->handle2SOAP();
+        }
+        
+        $view = new ViewModel();
+        $view->setTerminal(true);
+	
+	}
 
 	public function handleWSDL() {
         $autodiscover = new AutoDiscover();
         
         $autodiscover->setClass('\Webservice\Service\CadastroProduto');
         
-        $autodiscover->setUri('http://127.0.0.1:8080/webservice/webservice/requisicao');
+        $autodiscover->setUri('http://10.52.64.130/webservice/webservice/requisicao');
         $wsdl = $autodiscover->generate();
 		$wsdl->dump("Soap/wsdl/file.wsdl");
         $wsdl = $wsdl->toDomDocument();
@@ -51,13 +69,15 @@ class WebserviceController extends AbstractActionController{
     }
     
     public function handleSOAP() {
-	
+		
+		
 		$soap = new \Zend\Soap\Server($this->_WSDL_URI);
 		$soap->setClass('\Webservice\Service\CadastroProduto');
 		$soapObject = $this->getServiceLocator()->get('cadastroProduto');
 		$soap->setObject($soapObject);
 		
 		$soap->handle();
+		
     }
 	
 }

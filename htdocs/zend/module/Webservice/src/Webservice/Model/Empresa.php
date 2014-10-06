@@ -17,9 +17,9 @@ use Zend\InputFilter\InputFilterInterface;
 
      public function exchangeArray($data)
      {
-         $this->id_empresa     = (!empty($data['id_empresa'])) ? $data['id_empresa'] : 0;
-         $this->cnpj     = (!empty($data['cnpj'])) ? $data['cnpj'] : null;
-         $this->rasaosocial = (!empty($data['rasaosocial'])) ? $data['rasaosocial'] : null;
+         $this->id_empresa = (!empty($data['id_empresa'])) ? $data['id_empresa'] : 0;
+         $this->cnpj  = (!empty($data['cnpj'])) ? $data['cnpj'] : null;
+         $this->rasaosocial = (!empty($data['rasaosocial'])) ? strtoupper($data['rasaosocial']) : null;
          $this->nomefantasia = (!empty($data['nomefantasia'])) ? $data['nomefantasia'] : null;
      }
 	 

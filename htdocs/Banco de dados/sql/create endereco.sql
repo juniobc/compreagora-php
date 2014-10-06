@@ -3,8 +3,8 @@
 create table endereco(
  
     id_endereco int DEFAULT nextval('sq_id_endereco') primary key not null UNIQUE,
-    latitude bigint not null,
-    longitude bigint not null
+    latitude float not null,
+    longitude float not null
  
 );
  

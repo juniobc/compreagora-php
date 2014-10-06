@@ -15,6 +15,8 @@ return array(
     'db' => array(
          'driver'         => 'Pdo',
          'dsn'            => 'pgsql:host=127.0.0.1;dbname=quero;port=5432',
+         'username'       => 'postgres',
+         'password'       => 'teste123',
      ),
      'service_manager' => array(
          'factories' => array(

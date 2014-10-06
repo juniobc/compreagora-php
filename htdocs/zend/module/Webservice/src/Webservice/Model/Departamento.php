@@ -19,7 +19,7 @@ use Zend\InputFilter\InputFilterInterface;
      public function exchangeArray($data)
      {
          $this->id_dptoempresa     = (!empty($data['id_dptoempresa'])) ? $data['id_dptoempresa'] : 0;
-         $this->descricao     = (!empty($data['descricao'])) ? $data['descricao'] : null;
+         $this->descricao     = (!empty($data['descricao'])) ? strtoupper($data['descricao']) : null;
          $this->dt_cadstro = (!empty($data['dt_cadstro'])) ? $data['dt_cadstro'] : null;
          $this->id_empresa = (!empty($data['id_empresa'])) ? $data['id_empresa'] : null;
          $this->id_endereco = (!empty($data['id_endereco'])) ? $data['id_endereco'] : null;

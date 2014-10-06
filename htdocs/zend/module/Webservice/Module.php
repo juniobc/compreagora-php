@@ -120,6 +120,9 @@ class Module
                      $resultSetPrototype->setArrayObjectPrototype(new Entradaproduto());
                      return new TableGateway('entradaproduto', $dbAdapter, null, $resultSetPrototype);
                  },
+				 'Adapter' => function ($sm) {
+                     return $sm->get('Zend\Db\Adapter\Adapter');
+                 },
              ),
          );
      }

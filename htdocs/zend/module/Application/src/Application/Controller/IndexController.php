@@ -33,17 +33,17 @@ class IndexController extends AbstractActionController
 	
 		$listaProdutos = $this->listaProdutos();
 		
-		var_dump($listaProdutos);
-		
+		//var_dump($listaProdutos);
+		//exit(1);
 		foreach ($listaProdutos as $listaProduto) :
-		
-			echo "**************Produto $cont***************";
-			echo "Nome do produto: ".$listaProduto->ds_produto;
-			echo "Valor do produto: ".$listaProduto->vl_produto;
-			echo "Latitude do produto: ".$listaProduto->latitude;
-			echo "Longitude do produto: ".$listaProduto->longitude;
-			echo "Nome da empresa: ".$listaProduto->nomefantasia;
-			echo "********************FIM********************";
+			
+			echo "**************Produto $cont***************</br>";
+			echo "Nome do produto: ".$listaProduto["ds_produto"] . "</br>";
+			echo "Valor do produto: ".$listaProduto["vl_produto"] . "</br>";
+			echo "Latitude do produto: ".$listaProduto["latitude"] . "</br>";
+			echo "Longitude do produto: ".$listaProduto["longitude"] . "</br>";
+			echo "Nome da empresa: ".$listaProduto["descricao"] . "</br>";
+			echo "</br>********************FIM********************</br></br>";
 			
 			$cont = $cont + 1;
 		
@@ -63,49 +63,13 @@ class IndexController extends AbstractActionController
 		return $row_ent;
 	
 	}
-	
-	private function getEnderecoTable()
-	{
-		if (!$this->enderecoTable) {
-		$sm = $this->getServiceLocator();
-		$this->enderecoTable = $sm->get('Webservice\Model\EnderecoTable');
-	}
-		return $this->enderecoTable;
-	}
-
-	private function getEmpresaTable()
-	{
-		if (!$this->empresaTable) {
-		$sm = $this->getServiceLocator();
-		$this->empresaTable = $sm->get('Webservice\Model\EmpresaTable');
-	}
-		return $this->empresaTable;
-	}
-
-	private function getDepartamentoTable()
-	{
-		if (!$this->departamentoTable) {
-		$sm = $this->getServiceLocator();
-		$this->departamentoTable = $sm->get('Webservice\Model\DepartamentoTable');
-	}
-		return $this->departamentoTable;
-	}
-
-	private function getProdutoTable()
-	{
-		if (!$this->produtoTable) {
-		$sm = $this->getServiceLocator();
-		$this->produtoTable = $sm->get('Webservice\Model\ProdutoTable');
-	}
-		return $this->produtoTable;
-	}
 
 	private function getEntradaprodutoTable()
 	{
 		if (!$this->entradaprodutoTable) {
-		$sm = $this->getServiceLocator();
-		$this->entradaprodutoTable = $sm->get('Webservice\Model\EntradaprodutoTable');
-	}
+			$sm = $this->getServiceLocator();
+			$this->entradaprodutoTable = $sm->get('Application\Model\EntradaprodutoTable');
+		}
 		return $this->entradaprodutoTable;
 	}
 }
