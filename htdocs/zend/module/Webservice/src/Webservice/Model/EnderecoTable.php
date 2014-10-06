@@ -4,7 +4,7 @@ namespace Webservice\Model;
 
  use Zend\Db\TableGateway\TableGateway;
 
- class ProdutoTable
+ class EnderecoTable
  {
      protected $tableGateway;
 
@@ -19,28 +19,33 @@ namespace Webservice\Model;
          return $resultSet;
      }
 
-     public function getProduto(Produto $produto)
+     public function getEndereco(Endereco $endereco)
      {
-		
-         $rowset = $this->tableGateway->select(array('ds_produto' => $produto->ds_produto));
+	 
+		$data = array(
+             'latitude' => $endereco->latitude,
+             'longitude'  => $endereco->longitude
+         );
+	 
+         $rowset = $this->tableGateway->select($data);
          $row = $rowset->current();
 		 
          return $row;
-		 
      }
 
-     public function saveProduto(Produto $Produto)
+     public function saveEndereco(Endereco $endereco)
      {
+	 
 		$data = array(
-			'cd_catalogo' => $Produto->cd_catalogo,
-			'vl_produto'  => $Produto->vl_produto,
-			'ds_produto'  => $Produto->ds_produto,
+			'latitude' => $endereco->latitude,
+			'longitude'  => $endereco->longitude,
 		);
-
+		 
 		$this->tableGateway->insert($data);
+		
      }
 
-     public function deleteProduto($id)
+     public function deleteEndereco($id)
      {
          $this->tableGateway->delete(array('id_produto' => (int) $id));
      }

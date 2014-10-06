@@ -4,7 +4,7 @@ namespace Webservice\Model;
 
  use Zend\Db\TableGateway\TableGateway;
 
- class ProdutoTable
+ class EmpresaTable
  {
      protected $tableGateway;
 
@@ -19,28 +19,28 @@ namespace Webservice\Model;
          return $resultSet;
      }
 
-     public function getProduto(Produto $produto)
+     public function getEmpresa(Empresa $empresa)
      {
+	 
+		$rowset = $this->tableGateway->select(array('nomefantasia' => $empresa->nomefantasia));
+		$row = $rowset->current();
 		
-         $rowset = $this->tableGateway->select(array('ds_produto' => $produto->ds_produto));
-         $row = $rowset->current();
-		 
-         return $row;
-		 
+		return $row;
      }
 
-     public function saveProduto(Produto $Produto)
+     public function saveEmpresa(Empresa $empresa)
      {
-		$data = array(
-			'cd_catalogo' => $Produto->cd_catalogo,
-			'vl_produto'  => $Produto->vl_produto,
-			'ds_produto'  => $Produto->ds_produto,
-		);
-
+         $data = array(
+             'cnpj' => $empresa->cnpj,
+             'rasaosocial'  => $empresa->rasaosocial,
+             'nomefantasia'  => $empresa->nomefantasia,
+         );
+		 
 		$this->tableGateway->insert($data);
+		
      }
 
-     public function deleteProduto($id)
+     public function deleteEndereco($id)
      {
          $this->tableGateway->delete(array('id_produto' => (int) $id));
      }

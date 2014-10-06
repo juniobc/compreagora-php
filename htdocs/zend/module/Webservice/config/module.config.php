@@ -52,32 +52,7 @@ return array(
                     ),
                 ),
             ),
-			'cadastroproduto' => array(
-                'type'    => 'Literal',
-                'options' => array(
-                    'route'    => '/webservice',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'Webservice\Controller',
-                        'controller'    => 'CadastraProduto',
-                        'action'        => 'index',
-                    ),
-                ),
-                'may_terminate' => true,
-                'child_routes' => array(
-                    'default' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/[:controller[/:action]]',
-                            'constraints' => array(
-                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
-                            ),
-                            'defaults' => array(
-                            ),
-                        ),
-                    ),
-                ),
-            ),
+			
         ),
     ),
     'service_manager' => array(
@@ -85,6 +60,16 @@ return array(
             'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
             'Zend\Log\LoggerAbstractServiceFactory',
         ),
+		'factories' => array(
+			'Zend\Db\Adapter\Adapter' => function ($serviceManager) {
+			$adapterFactory = new Zend\Db\Adapter\AdapterServiceFactory();
+			$adapter = $adapterFactory->createService($serviceManager);
+
+			\Zend\Db\TableGateway\Feature\GlobalAdapterFeature::setStaticAdapter($adapter);
+
+			return $adapter;
+			}
+		),
         'aliases' => array(
             'translator' => 'MvcTranslator',
         ),

@@ -4,14 +4,26 @@ namespace Webservice\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use Zend\Soap\AutoDiscover;	
+use Zend\Soap\AutoDiscover;
+use Webservice\Service\CadastroProduto;
+use Webservice\Model\Produto; 
+use Webservice\Model\Endereco; 
+use Webservice\Model\Empresa;
+use Webservice\Model\Departamento;
+use Webservice\Model\Entradaproduto;
  
 class WebserviceController extends AbstractActionController{
 
 	private $_WSDL_URI = "http://127.0.0.1:8080/webservice/webservice/requisicao?wsdl";
+	
+	protected $produtoTable;
+	protected $enderecoTable;
+	protected $empresaTable;
+	protected $departamentoTable;
+	protected $entradaprodutoTable;
 
 	public function indexAction(){}
-	
+	 
 	public function requisicaoAction(){
 	
 		if (isset($_GET['wsdl'])) {
