@@ -15,7 +15,7 @@ use Webservice\Model\Entradaproduto;
  
 class WebserviceController extends AbstractActionController{
 
-	private $_WSDL_URI = "http://10.52.64.130/webservice/webservice/requisicao?wsdl";
+	private $_WSDL_URI = "http://quero-c9-juniobc.c9.io/htdocs/zend/public/webservice/webservice/requisicao?wsdl";
 	
 	protected $produtoTable;
 	protected $enderecoTable;
@@ -60,7 +60,7 @@ class WebserviceController extends AbstractActionController{
         
         $autodiscover->setClass('\Webservice\Service\CadastroProduto');
         
-        $autodiscover->setUri('http://10.52.64.130/webservice/webservice/requisicao');
+        $autodiscover->setUri('http://quero-c9-juniobc.c9.io/htdocs/zend/public/webservice/webservice/requisicao');
         $wsdl = $autodiscover->generate();
 		$wsdl->dump("Soap/wsdl/file.wsdl");
         $wsdl = $wsdl->toDomDocument();

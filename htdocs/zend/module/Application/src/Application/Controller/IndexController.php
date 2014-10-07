@@ -25,16 +25,26 @@ class IndexController extends AbstractActionController
 	protected $empresaTable;
 	protected $departamentoTable;
 	protected $entradaprodutoTable;
+	
+	public function indexAction(){
+		
+		//echo "teste1: ";
+		//
+		//$view = new ViewModel();
+		//
+		//echo "teste: ".$view->basePath();
+		
+		//exit(1);
+		
+	}
 
-    public function indexAction()
+    public function listaProdutoAction()
     {
 	
 		$cont = 0;
 	
 		$listaProdutos = $this->listaProdutos();
 		
-		//var_dump($listaProdutos);
-		//exit(1);
 		foreach ($listaProdutos as $listaProduto) :
 			
 			echo "**************Produto $cont***************</br>";

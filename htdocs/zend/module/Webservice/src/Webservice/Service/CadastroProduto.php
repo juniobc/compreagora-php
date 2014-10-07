@@ -44,7 +44,7 @@ class CadastroProduto implements ServiceLocatorAwareInterface{
 		
 			$connection->beginTransaction();
 		
-			$cd_catalogo = 0;
+			$cd_catalogo = 1;
 			$date = new \DateTime();
 			$dt_ent_prod = $date->format('Y/m/d');
 		

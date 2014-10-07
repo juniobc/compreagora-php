@@ -1,4 +1,4 @@
-﻿CREATE SEQUENCE sq_id_empresa INCREMENT 1 MINVALUE 0 MAXVALUE 999999;
+CREATE SEQUENCE sq_id_empresa INCREMENT 1 MINVALUE 0 MAXVALUE 999999;
  
 create table empresa(
  
@@ -6,7 +6,7 @@ create table empresa(
 	cnpj9 int,
 	cnpj4 int default 0,
 	cnpj2 int,
-	cnpj int not null,
+	cnpj bigint not null,
 	rasaoSocial varchar(200) not null,
 	nomeFantasia varchar(200) not null
  

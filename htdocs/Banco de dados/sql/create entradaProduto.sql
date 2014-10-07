@@ -1,4 +1,4 @@
-﻿/*CREATE SEQUENCE sq_id_entradaProduto INCREMENT 1 MINVALUE 0 MAXVALUE 99999;
+/*CREATE SEQUENCE sq_id_entradaProduto INCREMENT 1 MINVALUE 0 MAXVALUE 99999;
 
 create table entradaProduto(
  
