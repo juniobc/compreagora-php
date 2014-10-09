@@ -28,6 +28,12 @@ class WebserviceController extends AbstractActionController{
 		exit(1);
 	
 	}
+	
+	public function cadastro_produtoAction(){
+	    echo "teste";
+	   //exit(1);
+	    
+	}
 	 
 	public function requisicaoAction(){
 	
@@ -38,21 +44,50 @@ class WebserviceController extends AbstractActionController{
         }
         
         $view = new ViewModel();
-        $view->setTerminal(true);
+        $view->setTerminal(false);
 	
 	}
 	
-	public function requisicao2Action(){
+	public function empresaAction(){
 	
 		if (isset($_GET['wsdl'])) {
-            $this->handle2WSDL();
+            $this->wsdl();
         } else {
-            $this->handle2SOAP();
+            $this->soap();
         }
         
         $view = new ViewModel();
-        $view->setTerminal(true);
+        $view->setTerminal(false); 
 	
+	}
+	
+	public function wsdl(){
+		
+		
+		$autodiscover = new AutoDiscover();
+        
+        $autodiscover->setClass('\Webservice\Service\ConsultaBanco');
+        
+        $autodiscover->setUri('http://quero-c9-juniobc.c9.io/htdocs/zend/public/webservice/webservice/empresa');
+        $wsdl = $autodiscover->generate();
+		$wsdl->dump("Soap/wsdl/empresa.wsdl");
+        $wsdl = $wsdl->toDomDocument();
+        
+        echo $wsdl->saveXML();
+		
+		
+	}
+	
+	public function soap(){
+		
+		$soap = new \Zend\Soap\Server($this->_WSDL_URI);
+		$soap->setClass('\Webservice\Service\ConsultaBanco');
+		$soapObject = $this->getServiceLocator()->get('consultabanco');
+		$soap->setObject($soapObject);
+		
+		$soap->handle();
+		
+		
 	}
 
 	public function handleWSDL() {

@@ -4,8 +4,7 @@ return array(
     'modules' => array(
         'Application',
 		'Webservice',
-		'Webservice2'
-		//'Album'
+		//'Webservice2'
     ),
 
     // These are various options for the listeners attached to the ModuleManager

@@ -65,6 +65,7 @@ return array(
 		'invokables' => array(
 		
 			'cadastroproduto' => 'Webservice\Service\CadastroProduto',
+			'consultabanco' => 'Webservice\Service\ConsultaBanco',
 		
 		),
     ),
@@ -80,8 +81,7 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Webservice\Controller\Webservice' => 'Webservice\Controller\WebserviceController',
-            'Webservice\Controller\Cadastroproduto' => 'Webservice\Controller\CadastroProdutoController'
+            'Webservice\Controller\Webservice' => 'Webservice\Controller\WebserviceController'
         ),
     ),
     'view_manager' => array(

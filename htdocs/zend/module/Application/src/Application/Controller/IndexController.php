@@ -1,10 +1,12 @@
 <?php
 /**
- * Zend Framework (http://framework.zend.com/)
+ * funcao: Lista produtos cadastrados
+ * autor: Sebastiao Junio
+ * Data 07/10/2014
  *
- * @link      http://github.com/zendframework/ZendSkeletonApplication for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @link      https://github.com/juniobc/Quero.git
+ * @copyright Copyright (c) Quero (http://www.quero.com.br)
+ * 
  */
 
 namespace Application\Controller;
@@ -28,13 +30,27 @@ class IndexController extends AbstractActionController
 	
 	public function indexAction(){
 		
-		//echo "teste1: ";
-		//
-		//$view = new ViewModel();
-		//
-		//echo "teste: ".$view->basePath();
+		$dadosPagina = array(15);
 		
-		//exit(1);
+		$listaProdutos = $this->listaProdutos();
+		
+		$cont = 1;
+		
+		foreach($listaProdutos as $produto) :
+		
+			$dadosPagina['titulo'.$cont] = $produto['ds_produto'];
+			$dadosPagina['preco'.$cont] = $produto['vl_produto'];
+			
+			$cont = $cont + 1;
+		
+		endforeach;
+		
+		$listaProdutos = $this->listaProdutos();
+		
+		return new ViewModel(array(
+             'listaProdutos' => $listaProdutos,
+             'dadosPagina' => $dadosPagina
+        ));
 		
 	}
 
@@ -82,4 +98,32 @@ class IndexController extends AbstractActionController
 		}
 		return $this->entradaprodutoTable;
 	}
+	
+	
+	 public function listaEmpresaAction()
+    {
+	
+		$cont = 0;
+	
+		$listaProdutos = $this->listaProdutos();
+		
+		foreach ($listaProdutos as $listaProduto) :
+			
+			echo "**************Produto $cont***************</br>";
+			echo "Nome do produto: ".$listaProduto["ds_produto"] . "</br>";
+			echo "Valor do produto: ".$listaProduto["vl_produto"] . "</br>";
+			echo "Latitude do produto: ".$listaProduto["latitude"] . "</br>";
+			echo "Longitude do produto: ".$listaProduto["longitude"] . "</br>";
+			echo "Nome da empresa: ".$listaProduto["descricao"] . "</br>";
+			echo "</br>********************FIM********************</br></br>";
+			
+			$cont = $cont + 1;
+		
+		endforeach;
+		
+		exit(1);
+	
+        //return new ViewModel();
+    }
+	
 }

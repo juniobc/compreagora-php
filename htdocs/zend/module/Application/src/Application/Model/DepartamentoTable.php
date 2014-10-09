@@ -7,16 +7,25 @@ namespace Application\Model;
  class DepartamentoTable
  {
      protected $tableGateway;
+     protected $adapter;
 
      public function __construct(TableGateway $tableGateway)
      {
          $this->tableGateway = $tableGateway;
+         $this->adapter = $this->tableGateway->getAdapter();
      }
 
      public function fetchAll()
      {
-         $resultSet = $this->tableGateway->select();
-         return $resultSet;
+         
+        $sql = 'select * from empresa, departamento dpto where empresa.id_empresa = dpto.id_empresa
+        and dpto.id_endereco = endereco.id_endereco';
+		
+		$linhas = $this->adapter->query($sql);
+		
+		$linhas = $linhas->execute();
+		
+		return $linhas;
      }
 
      public function getDepartamento(Departamento $departamento)

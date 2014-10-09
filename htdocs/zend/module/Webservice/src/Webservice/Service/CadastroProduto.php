@@ -39,12 +39,13 @@ class CadastroProduto implements ServiceLocatorAwareInterface{
 	
 		$adapter = $this->getServiceLocator()->get('Adapter');
 		$connection = $adapter->getDriver()->getConnection();
+		$cd_catalogo = 0;
 		
 		try{
 		
 			$connection->beginTransaction();
 		
-			$cd_catalogo = 1;
+			
 			$date = new \DateTime();
 			$dt_ent_prod = $date->format('Y/m/d');
 		
