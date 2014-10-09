@@ -6,7 +6,7 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Zend\Soap\AutoDiscover;
 use Webservice\Service\CadastroProduto;
-use Webservice\Service\OlaMundo;
+use Webservice\Service\ConsultaBanco;
 use Webservice\Model\Produto; 
 use Webservice\Model\Endereco; 
 use Webservice\Model\Empresa;
@@ -24,10 +24,29 @@ class WebserviceController extends AbstractActionController{
 	protected $entradaprodutoTable;
 
 	public function indexAction(){
+		
+		$row_emp = $this->getDepartamentoTable()->buscaEmpresaLatLong(-16.70233453, -49.22747316);
+		
+		foreach($row_emp as $row) :
+		
+    			$msg = $row['id_endereco'];
+		
+		endforeach;
+		
+		var_dump($msg);
 	
 		exit(1);
 	
 	}
+	
+	private function getDepartamentoTable()
+     {
+         if (!$this->departamentoTable) {
+             $sm = $this->getServiceLocator();
+             $this->departamentoTable = $sm->get('Webservice\Model\DepartamentoTable');
+         }
+         return $this->departamentoTable;
+     }
 	
 	public function cadastro_produtoAction(){
 	    echo "teste";
@@ -48,7 +67,7 @@ class WebserviceController extends AbstractActionController{
 	
 	}
 	
-	public function empresaAction(){
+	public function consultaAction(){
 	
 		if (isset($_GET['wsdl'])) {
             $this->wsdl();
@@ -63,14 +82,26 @@ class WebserviceController extends AbstractActionController{
 	
 	public function wsdl(){
 		
-		
+		$wsdl = new Zend\Soap\Wsdl('My_Web_Service', $myWebServiceUri);
 		$autodiscover = new AutoDiscover();
-        
         $autodiscover->setClass('\Webservice\Service\ConsultaBanco');
-        
-        $autodiscover->setUri('http://quero-c9-juniobc.c9.io/htdocs/zend/public/webservice/webservice/empresa');
+        $autodiscover->setUri('http://quero-c9-juniobc.c9.io/htdocs/zend/public/webservice/webservice/consulta');
+        $autodiscover->addComplexType(
+			'Empresa',
+			'complexType',
+			'struct',
+			'all',
+			'',
+			array(
+				'Name' => array('name'=>'name','type'=>'xsd:string'),
+				'Code' => array('name'=>'product_number','type'=>'xsd:string'),
+				'Price' => array('name'=>'price','type'=>'xsd:string'),
+				'Ammount' => array('name'=>'quantity','type'=>'xsd:string')
+			)
+		);
         $wsdl = $autodiscover->generate();
-		$wsdl->dump("Soap/wsdl/empresa.wsdl");
+        
+		$wsdl->dump("Soap/wsdl/consultabanco.wsdl");
         $wsdl = $wsdl->toDomDocument();
         
         echo $wsdl->saveXML();
@@ -80,9 +111,10 @@ class WebserviceController extends AbstractActionController{
 	
 	public function soap(){
 		
-		$soap = new \Zend\Soap\Server($this->_WSDL_URI);
+		$soap = new \Zend\Soap\Server('http://quero-c9-juniobc.c9.io/htdocs/zend/Soap/wsdl/consultabanco.wsdl');
 		$soap->setClass('\Webservice\Service\ConsultaBanco');
 		$soapObject = $this->getServiceLocator()->get('consultabanco');
+		
 		$soap->setObject($soapObject);
 		
 		$soap->handle();

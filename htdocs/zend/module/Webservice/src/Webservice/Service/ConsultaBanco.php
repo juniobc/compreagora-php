@@ -9,7 +9,7 @@ use Webservice\Model\Endereco;
 use Webservice\Model\Empresa;
 use Webservice\Model\Departamento;
 use Webservice\Model\Entradaproduto;
-
+use Webservice\Service\Tipoempresa; 
 
 class ConsultaBanco implements ServiceLocatorAwareInterface{
 
@@ -31,14 +31,34 @@ class ConsultaBanco implements ServiceLocatorAwareInterface{
     }
     
     /**
-     * @return string
+     * 
+     * @return Empresa
      */
     public function listaEmpresa()
     {
+        
+        $msg = array();
+        $cont = 0;
     	
+    	$row_emp = $this->getDepartamentoTable()->buscaEmpresaLatLong(-16.70233453, -49.22747316);
     	
+    	if(!$row_emp){
+    	    
+    	    $msg[0] = "Nenhuma empresa encontrada";
+    	    
+    	}else{
+    	    
+    	    foreach($row_emp as $row) :
+		
+    			$msg["empresa-".$cont] = $row;
+    			
+    			$cont = $cont + 1;
+		    
+		    endforeach;
+    	    
+    	}
     	
-		return "eu to aqui2";
+		return $msg;
 		
     }
 	
