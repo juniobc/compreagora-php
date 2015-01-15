@@ -10,6 +10,7 @@
 return array(
 	'router' => array(
 		'routes' => array(
+		    
 			'home' => array(
 				'type' => 'Zend\Mvc\Router\Http\Literal',
 				'options' => array(
@@ -20,6 +21,8 @@ return array(
 					),
 				),
 			),
+			
+			
             'application' => array(
                 'type'    => 'Literal',
                 'options' => array(
@@ -46,6 +49,8 @@ return array(
                     ),
                 ),
             ),
+            
+            
         ),
     ),
     'service_manager' => array(
@@ -70,8 +75,6 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Application\Controller\Index' => 'Application\Controller\IndexController',
-            'Application\Controller\Service' => 'Application\Controller\ServiceController',
-            'Application\Controller\ClienteService' => 'Application\Controller\ClienteServiceController'
         ),
     ),
     'view_manager' => array(
