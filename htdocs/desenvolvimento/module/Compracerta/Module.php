@@ -7,20 +7,20 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Application;
+namespace Compracerta;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
-use Application\Model\Produto;
-use Application\Model\ProdutoTable;
-use Application\Model\Endereco;
-use Application\Model\EnderecoTable;
-use Application\Model\Empresa;
-use Application\Model\EmpresaTable;
-use Application\Model\Departamento;
-use Application\Model\DepartamentoTable;
-use Application\Model\Entradaproduto;
-use Application\Model\EntradaprodutoTable;
+use Compracerta\Model\Produto;
+use Compracerta\Model\ProdutoTable;
+use Compracerta\Model\Endereco;
+use Compracerta\Model\EnderecoTable;
+use Compracerta\Model\Empresa;
+use Compracerta\Model\EmpresaTable;
+use Compracerta\Model\Departamento;
+use Compracerta\Model\DepartamentoTable;
+use Compracerta\Model\Entradaproduto;
+use Compracerta\Model\EntradaprodutoTable;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 
@@ -65,7 +65,7 @@ class Module
     {
          return array(
              'factories' => array(
-                 'Application\Model\ProdutoTable' =>  function($sm) {
+                 'Compracerta\Model\ProdutoTable' =>  function($sm) {
                      $tableGateway = $sm->get('ProdutoTableGateway');
                      $table = new ProdutoTable($tableGateway);
                      return $table;
@@ -76,7 +76,7 @@ class Module
                      $resultSetPrototype->setArrayObjectPrototype(new Produto());
                      return new TableGateway('produto', $dbAdapter, null, $resultSetPrototype);
                  },
-				 'Application\Model\EnderecoTable' =>  function($sm) {
+				 'Compracerta\Model\EnderecoTable' =>  function($sm) {
                      $tableGateway = $sm->get('EnderecoTableGateway');
                      $table = new EnderecoTable($tableGateway);
                      return $table;
@@ -87,7 +87,7 @@ class Module
                      $resultSetPrototype->setArrayObjectPrototype(new Endereco());
                      return new TableGateway('endereco', $dbAdapter, null, $resultSetPrototype);
                  },
-				 'Application\Model\EmpresaTable' =>  function($sm) {
+				 'Compracerta\Model\EmpresaTable' =>  function($sm) {
                      $tableGateway = $sm->get('EmpresaTableGateway');
                      $table = new EmpresaTable($tableGateway);
                      return $table;
@@ -98,7 +98,7 @@ class Module
                      $resultSetPrototype->setArrayObjectPrototype(new Empresa());
                      return new TableGateway('empresa', $dbAdapter, null, $resultSetPrototype);
                  },
-				 'Application\Model\DepartamentoTable' =>  function($sm) {
+				 'Compracerta\Model\DepartamentoTable' =>  function($sm) {
                      $tableGateway = $sm->get('DepartamentoTableGateway');
                      $table = new DepartamentoTable($tableGateway);
                      return $table;
@@ -109,7 +109,7 @@ class Module
                      $resultSetPrototype->setArrayObjectPrototype(new Departamento());
                      return new TableGateway('departamento', $dbAdapter, null, $resultSetPrototype);
                  },
-				 'Application\Model\EntradaprodutoTable' =>  function($sm) {
+				 'Compracerta\Model\EntradaprodutoTable' =>  function($sm) {
                      $tableGateway = $sm->get('EntradaprodutoTableGateway');
                      $table = new EntradaprodutoTable($tableGateway);
                      return $table;
