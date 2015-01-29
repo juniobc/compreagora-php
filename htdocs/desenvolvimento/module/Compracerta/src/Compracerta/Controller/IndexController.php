@@ -17,46 +17,94 @@ use Zend\Http\Client as HttpClient;
 use Zend\Http\Request;
 use Zend\Stdlib\Parameters;
 use Zend\Json\Json as Jason;
+use Zend\View\Model\JsonModel;
+
 
 class IndexController extends AbstractActionController
 {
     
     public function indexAction(){
         
-        var_dump($this->getRequest()->isPost());
+    }
+    
+    public function ajaxAction(){
         
-        if($this->getRequest()->isPost()){
+        $arrayProduto = array();
+        $request = $this->getRequest();
+        
+        if($request->isPost()){
             
-            echo "teste: ". $this->params()->fromPost('nome');
-            exit(1);
+            if(is_numeric($request->getPost('nm_produto'))){
+                
+               return $this->procura_cd_barra();
+                
+            }else{
+                
+               return $this->listaproduto();
+                
+            }
             
         }else{
             
-            echo "teste2: ";
+            return $this->redirect()->toRoute('compracerta');
             
         }
+        
     }
-
-	public function listaproduto(){
-	    
-	    
-	        
-		$client = new HttpClient();
+    
+    private function procura_cd_barra(){
+        
+        $arrayProduto = array();
+        $request = $this->getRequest();
+        
+        $ListaProduto = $this->envia_rest('findOfferList', array('barcode'=>$request->getPost('nm_produto')));
+        
+        if(isset($ListaProduto['product']['productName']))
+            $arrayProduto[1]['nm_produto'] = $ListaProduto['product']['productName'];
+        if(isset($ListaProduto['product']['thumbnail']['@attributes']['url']))
+            $arrayProduto[1]['img_produto'] = $ListaProduto['product']['thumbnail']['@attributes']['url'];
+        if(isset($ListaProduto['product']['priceMin']) && isset($ListaProduto['product']['priceMin']))
+            $arrayProduto[1]['preco_medio'] = number_format(
+                ($ListaProduto['product']['priceMin'] + $ListaProduto['product']['priceMax'])/2, 2
+            );
+        
+        $response = $this->getResponse();
+        
+        //$response->setContent(json_encode(array("teste"=>$request->getPost('nome'))));
+        $response->setContent(json_encode($arrayProduto));
+        
+        $headers = $response->getHeaders();
+        $headers->addHeaderLine('Content-Type', 'application/json');
+        
+        return $response;
+        
+    }
+    
+    private function envia_rest($tp_consulta, $paramentros){
+        
+        $arrayProduto = array();
+        $request = $this->getRequest();
+        
+        $client = new HttpClient();
         $client->setAdapter('Zend\Http\Client\Adapter\Curl');
         
-        $client->setUri('http://sandbox.buscape.com/service/findProductList/6c71682f5a3250676359383d');
+        $client->setUri('http://sandbox.buscape.com/service/'.$tp_consulta.'/564771466d477a4458664d3d');
 		
 		$client->setMethod('GET');
-        $client->setParameterGET(array('keyword'=>$this->params()->fromPost('nome'), 'page' => 10));  
+        $client->setParameterGET($paramentros);  
         
         $response = $client->send();
         
         if (!$response->isSuccess()) {
-            // report failure
+                exit(1);
             $message = $response->getStatusCode() . ': ' . $response->getReasonPhrase();
              
             $response = $this->getResponse();
-            $response->setContent($message);
+            $response->setContent(json_encode($message));
+            
+            $headers = $response->getHeaders();
+            $headers->addHeaderLine('Content-Type', 'application/json');
+            
             return $response;
         }
         
@@ -68,129 +116,76 @@ class IndexController extends AbstractActionController
         $simpleXML = simplexml_load_string($response->getBody());
         
         $jsonEncode = json_encode($simpleXML);
-        $ListaProduto = json_decode($jsonEncode,TRUE);
+        $arrayProduto = json_decode($jsonEncode,TRUE);
         
-        return new ViewModel(array("objects" => $ListaProduto['product']));
         
-        /*var_dump(array_keys($ListaProduto['product']));
-            
-        echo '</br>************************************************</br>';
-        echo '</br>';
+        return $arrayProduto;
         
-        var_dump($ListaProduto['@attributes']);
-            
-        echo '</br>************************************************</br>';
-        echo '</br>';
-        
-        $cont = 0;
-        
-        foreach ($ListaProduto['product'] as $object) :
-            
-            var_dump(array_keys($object));
-            
-            echo '</br>*********************Analise obj '.$cont.'***************************</br>';
-            
-            $productName = $object['productName'];
-            $productShortName = $object['productShortName'];
-            $currency = $object['currency'];
-            $priceMin = $object['priceMin'];
-            $priceMax = $object['priceMax'];
-            $links = $object['links'];
-            $thumbnail = $object['thumbnail'];
-            $rating = $object['rating'];
-            $specification = $object['specification']['item'];
-            
-            echo 'Nome do produto: '.$productName.'</br>Thumbnail:</br>';
-            
-            foreach ($thumbnail as $chave) :
-                
-                if(isset($chave['url'])){
-                    
-                    echo 'teste';
-                    
-                }
-            
-            endforeach;
-            
-            echo '</br>*********************Fim***************************</br>';
-            
-            $cont = $cont + 1;
-            
-        endforeach;*/
-		
-	}
-	
-	public function listacategoriaAction(){
+    }
+
+	private function listaproduto(){
 	    
-	     
-		$client = new HttpClient();
-        $client->setAdapter('Zend\Http\Client\Adapter\Curl');
+	    $arrayProduto = array();
+	    $cont = 1;
+	    $request = $this->getRequest();
+                
+        $ListaProduto = $this->envia_rest('findProductList', 
+        array('keyword'=>$request->getPost('nm_produto'), 'page' => $request->getPost('pagina')));
         
-        $client->setUri('http://sandbox.buscape.com/service/findProductList/lomadee/6c71682f5a3250676359383d');
-		
-		$client->setMethod('GET');
-        $client->setParameterGET(array('keyword'=>'caneta'));  
-        
-        $response = $client->send();
-        
-        if (!$response->isSuccess()) {
-            // report failure
-            $message = $response->getStatusCode() . ': ' . $response->getReasonPhrase();
-             
-            $response = $this->getResponse();
-            $response->setContent($message);
-            return $response;
-        }
-        $body = $response->getBody();
-         
-        $response = $this->getResponse();
-        $response->setContent($body);
-        
-        $jason = new Jason();
-        
-        $jsonContents = $jason->fromXml($response->getBody(), true);
-        
-        $jasonDecode = json_decode($jsonContents, true);
-        
-        var_dump(array_keys($jasonDecode['Result']));
+		if($ListaProduto['@attributes']['totalResultsAvailable'] > 0){
             
-        echo '</br>************************************************</br>';
-        echo '</br>';
-        
-        foreach ($jasonDecode['Result']['product'] as $object) :
-            
-            $productName = $object['productName'];
-            $productShortName = $object['productShortName'];
-            $currency = $object['currency'];
-            $priceMin = $object['priceMin'];
-            $priceMax = $object['priceMax'];
-            $links = $object['links'];
-            $thumbnail = $object['thumbnail'];
-            $rating = $object['rating'];
-            $specification = $object['specification']['item'];
-        
-            
-            var_dump(array_keys($object));
-            echo '</br></br>Nome do produto: ' . $productName;
-            echo '</br>Nome do apelido: ' . $productShortName . '</br>';
-            echo '</br>Nome do currency: ' . $currency . '</br>';
-            echo '</br>Preço minimo: ' . $priceMin . '</br>';
-            echo '</br>Preço maximo: ' . $priceMax . '</br>Links: ';
-            echo '</br> ' . var_dump($links) . '</br>Thunbail: ';
-            echo '</br> ' . var_dump($thumbnail) . '</br>Rating: ';
-            echo '</br> ' . var_dump($rating) . '</br>Especificação:</br>';
-            echo '</br>' .var_dump(array_keys($specification)) . '</br>';
-            foreach ($specification as $chave => $valor) :
-            
-                echo '</br>'.var_dump($valor).'</br>';
-            
+            foreach ($ListaProduto['product'] as $object) :
+                
+                if(isset($object['productName']))
+                    $arrayProduto[$cont]['nm_produto'] = $object['productName'];
+                if(isset($object['thumbnail']['@attributes']['url']))
+                    $arrayProduto[$cont]['img_produto'] = $object['thumbnail']['@attributes']['url'];
+                if(isset($object['priceMin']) && isset($object['priceMin']))
+                    $arrayProduto[$cont]['preco_medio'] = number_format(($object['priceMin'] + $object['priceMax'])/2, 2);
+                
+                /*$productName = $object['productName'];
+                $productShortName = $object['productShortName'];
+                $currency = $object['currency'];
+                $priceMin = $object['priceMin'];
+                $priceMax = $object['priceMax'];
+                $links = $object['links'];
+                $thumbnail = $object['thumbnail'];
+                $rating = $object['rating'];
+                $specification = $object['specification']['item'];*/
+                
+                $cont = $cont + 1;
+                
             endforeach;
-            echo '</br>************************************************</br>';
-            echo '</br>';
             
+            $arrayProduto['msg'] = 0;
+            
+            //var_dump($arrayProduto[0]);
+            
+            $response = $this->getResponse();
+            //$response->setContent(json_encode(array("teste"=>$request->getPost('nome'))));
+            $response->setContent(json_encode($arrayProduto));
+            
+            $headers = $response->getHeaders();
+            $headers->addHeaderLine('Content-Type', 'application/json');
         
-        endforeach;
-	
+            return $response;
+            
+        }else{
+            
+            $arrayProduto['msg'] = 1;
+            
+            $response = $this->getResponse();
+            
+            $response->setContent(json_encode($arrayProduto));
+            
+            $headers = $response->getHeaders();
+            $headers->addHeaderLine('Content-Type', 'application/json');
+        
+            return $response;
+            
+        }
+        
+        
 		
 	}
 	
