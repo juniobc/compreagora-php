@@ -1,0 +1,9 @@
+<?php header('Content-type: application/xml'); ?>
+<html>
+	
+	<body>
+		<?php var_dump($results) ?>
+		<img src='data:image/png;base64<?php echo $this->results ?>'/>
+	</body>
+	
+</html>
