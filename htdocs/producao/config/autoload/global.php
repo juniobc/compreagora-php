@@ -14,14 +14,21 @@
 return array(
     'db' => array(
          'driver'         => 'Pdo',
-         'dsn'            => 'pgsql:host=127.0.0.1;dbname=quero;port=5432',
+         'dsn'            => 'pgsql:host=127.0.0.1;dbname=compreagora;port=5432',
          'username'       => 'postgres',
-         'password'       => 'teste123',
+         'password'       => 'promptc2010456',
      ),
      'service_manager' => array(
          'factories' => array(
-             'Zend\Db\Adapter\Adapter'
-                     => 'Zend\Db\Adapter\AdapterServiceFactory',
+            'Zend\Db\Adapter\Adapter' => 'Zend\Db\Adapter\AdapterServiceFactory',
+            'Log' => function ($sm) {
+                $log = new Zend\Log\Logger();
+                $writer = new Zend\Log\Writer\Stream('data/logs/logfile.log');
+                $log->addWriter($writer);
+        
+                return $log;
+            }
          ),
+         
      ),
 );
