@@ -1,0 +1,15 @@
+[25-Feb-2015 11:28:16 America/Sao_Paulo] PHP Fatal error:  Uncaught exception 'RuntimeException' with message 'Unable to load ZF2. Run `php composer.phar install` or define a ZF2_PATH environment variable.' in /home/ubuntu/workspace/htdocs/desenvolvimento/init_autoloader.php:55
+Stack trace:
+#0 /home/ubuntu/workspace/htdocs/desenvolvimento/public/index.php(26): require()
+#1 {main}
+  thrown in /home/ubuntu/workspace/htdocs/desenvolvimento/init_autoloader.php on line 55
+[25-Feb-2015 11:29:48 America/Sao_Paulo] PHP Fatal error:  Uncaught exception 'RuntimeException' with message 'Unable to load ZF2. Run `php composer.phar install` or define a ZF2_PATH environment variable.' in /home/ubuntu/workspace/htdocs/desenvolvimento/init_autoloader.php:55
+Stack trace:
+#0 /home/ubuntu/workspace/htdocs/desenvolvimento/public/index.php(26): require()
+#1 {main}
+  thrown in /home/ubuntu/workspace/htdocs/desenvolvimento/init_autoloader.php on line 55
+[25-Feb-2015 11:30:09 America/Sao_Paulo] PHP Fatal error:  Uncaught exception 'RuntimeException' with message 'Unable to load ZF2. Run `php composer.phar install` or define a ZF2_PATH environment variable.' in /home/ubuntu/workspace/htdocs/desenvolvimento/init_autoloader.php:55
+Stack trace:
+#0 /home/ubuntu/workspace/htdocs/desenvolvimento/public/index.php(26): require()
+#1 {main}
+  thrown in /home/ubuntu/workspace/htdocs/desenvolvimento/init_autoloader.php on line 55
