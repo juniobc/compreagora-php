@@ -18,6 +18,7 @@ use Zend\Http\Request;
 use Zend\Stdlib\Parameters;
 use Zend\Json\Json as Jason;
 use Zend\View\Model\JsonModel;
+use Zend\Http\Response;
 
 
 class IndexController extends AbstractActionController
@@ -70,7 +71,6 @@ class IndexController extends AbstractActionController
         
         $response = $this->getResponse();
         
-        //$response->setContent(json_encode(array("teste"=>$request->getPost('nome'))));
         $response->setContent(json_encode($arrayProduto));
         
         $headers = $response->getHeaders();
@@ -88,7 +88,7 @@ class IndexController extends AbstractActionController
         $client = new HttpClient();
         $client->setAdapter('Zend\Http\Client\Adapter\Curl');
         
-        $client->setUri('http://sandbox.buscape.com/service/'.$tp_consulta.'/564771466d477a4458664d3d');
+        $client->setUri('http://sandbox.buscape.com/service/'.$tp_consulta.'/6c71682f5a3250676359383d');
 		
 		$client->setMethod('GET');
         $client->setParameterGET($paramentros);  
@@ -96,7 +96,7 @@ class IndexController extends AbstractActionController
         $response = $client->send();
         
         if (!$response->isSuccess()) {
-                exit(1);
+            
             $message = $response->getStatusCode() . ': ' . $response->getReasonPhrase();
              
             $response = $this->getResponse();
@@ -132,6 +132,12 @@ class IndexController extends AbstractActionController
         $ListaProduto = $this->envia_rest('findProductList', 
         array('keyword'=>$request->getPost('nm_produto'), 'page' => $request->getPost('pagina')));
         
+        if($ListaProduto instanceof Response){
+        
+            return $ListaProduto;
+            
+        }
+        
 		if($ListaProduto['@attributes']['totalResultsAvailable'] > 0){
             
             foreach ($ListaProduto['product'] as $object) :
@@ -143,15 +149,15 @@ class IndexController extends AbstractActionController
                 if(isset($object['priceMin']) && isset($object['priceMin']))
                     $arrayProduto[$cont]['preco_medio'] = number_format(($object['priceMin'] + $object['priceMax'])/2, 2);
                 
-                /*$productName = $object['productName'];
+                $productName = $object['productName'];
                 $productShortName = $object['productShortName'];
                 $currency = $object['currency'];
                 $priceMin = $object['priceMin'];
                 $priceMax = $object['priceMax'];
                 $links = $object['links'];
                 $thumbnail = $object['thumbnail'];
-                $rating = $object['rating'];
-                $specification = $object['specification']['item'];*/
+                //$rating = $object['rating'];
+                //$specification = $object['specification']['item'];
                 
                 $cont = $cont + 1;
                 
@@ -162,7 +168,6 @@ class IndexController extends AbstractActionController
             //var_dump($arrayProduto[0]);
             
             $response = $this->getResponse();
-            //$response->setContent(json_encode(array("teste"=>$request->getPost('nome'))));
             $response->setContent(json_encode($arrayProduto));
             
             $headers = $response->getHeaders();
