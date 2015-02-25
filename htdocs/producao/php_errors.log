@@ -347,3 +347,5 @@ Stack trace:
 [06-Oct-2014 03:19:52 America/Sao_Paulo] PHP Fatal error:  Call to undefined method Zend\Db\Adapter\Driver\Pdo\Result::toArray() in D:\Sebastiao\Projetos\Quero\htdocs\zend\module\Application\src\Application\Model\EntradaprodutoTable.php on line 38
 [06-Oct-2014 05:34:17 America/Sao_Paulo] PHP Fatal error:  Call to undefined method Zend\Db\Adapter\Driver\Pdo\Result::toArray() in D:\Sebastiao\Projetos\Quero\htdocs\zend\module\Application\src\Application\Model\EntradaprodutoTable.php on line 38
 [06-Oct-2014 06:00:07 America/Sao_Paulo] PHP Fatal error:  Call to undefined method Zend\Db\Adapter\Driver\Pdo\Result::toArray() in D:\Sebastiao\Projetos\Quero\htdocs\zend\module\Application\src\Application\Model\EntradaprodutoTable.php on line 38
+[25-Feb-2015 11:16:57 America/Sao_Paulo] PHP Notice:  Undefined variable: teste in /home/ubuntu/workspace/htdocs/producao/public/index.php on line 13
+[25-Feb-2015 11:16:57 America/Sao_Paulo] PHP Warning:  array_keys() expects parameter 1 to be array, null given in /home/ubuntu/workspace/htdocs/producao/public/index.php on line 13

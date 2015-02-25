@@ -2,14 +2,14 @@
 
 date_default_timezone_set('America/Sao_Paulo');
 
-//if ($_SERVER['APPLICATION_ENV'] == 'development') {
+if ($_SERVER['APPLICATION_ENV'] == 'development') {
+	
 	error_reporting(E_ALL | E_STRICT);
 	ini_set('display_errors', '1');
-	//ini_set('error_log','/log/php_errors.txt');
+	ini_set("log_errors", 1);
+	ini_set('error_log','/home/ubuntu/workspace/htdocs/desenvolvimento/data/logs/php_errors.log');
 	
-	
-//}
-
+}
 
 /**
  * This makes our life easier when dealing with paths. Everything is relative
