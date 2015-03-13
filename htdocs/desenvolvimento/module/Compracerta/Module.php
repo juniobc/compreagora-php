@@ -11,18 +11,11 @@ namespace Compracerta;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
-use Compracerta\Model\Produto;
-use Compracerta\Model\ProdutoTable;
-use Compracerta\Model\Endereco;
-use Compracerta\Model\EnderecoTable;
-use Compracerta\Model\Empresa;
-use Compracerta\Model\EmpresaTable;
-use Compracerta\Model\Departamento;
-use Compracerta\Model\DepartamentoTable;
-use Compracerta\Model\Entradaproduto;
-use Compracerta\Model\EntradaprodutoTable;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
+use Zend\Authentication\Storage;
+use Zend\Authentication\AuthenticationService;
+use Zend\Authentication\Adapter\DbTable as DbTableAuthAdapter;
 
 class Module
 {
@@ -39,7 +32,9 @@ class Module
 			}
 		}
 		
-		$eventManager        = $e->getApplication()->getEventManager();
+		$eventManager = $e->getApplication()->getEventManager();
+		
+		//$eventManager->attach('route', array($this, 'checkAuthenticated'));
 		
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
@@ -65,64 +60,26 @@ class Module
     {
          return array(
              'factories' => array(
-                 'Compracerta\Model\ProdutoTable' =>  function($sm) {
-                     $tableGateway = $sm->get('ProdutoTableGateway');
-                     $table = new ProdutoTable($tableGateway);
-                     return $table;
-                 },
-                 'ProdutoTableGateway' => function ($sm) {
-                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
-                     $resultSetPrototype = new ResultSet();
-                     $resultSetPrototype->setArrayObjectPrototype(new Produto());
-                     return new TableGateway('produto', $dbAdapter, null, $resultSetPrototype);
-                 },
-				 'Compracerta\Model\EnderecoTable' =>  function($sm) {
-                     $tableGateway = $sm->get('EnderecoTableGateway');
-                     $table = new EnderecoTable($tableGateway);
-                     return $table;
-                 },
-                 'EnderecoTableGateway' => function ($sm) {
-                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
-                     $resultSetPrototype = new ResultSet();
-                     $resultSetPrototype->setArrayObjectPrototype(new Endereco());
-                     return new TableGateway('endereco', $dbAdapter, null, $resultSetPrototype);
-                 },
-				 'Compracerta\Model\EmpresaTable' =>  function($sm) {
-                     $tableGateway = $sm->get('EmpresaTableGateway');
-                     $table = new EmpresaTable($tableGateway);
-                     return $table;
-                 },
-                 'EmpresaTableGateway' => function ($sm) {
-                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
-                     $resultSetPrototype = new ResultSet();
-                     $resultSetPrototype->setArrayObjectPrototype(new Empresa());
-                     return new TableGateway('empresa', $dbAdapter, null, $resultSetPrototype);
-                 },
-				 'Compracerta\Model\DepartamentoTable' =>  function($sm) {
-                     $tableGateway = $sm->get('DepartamentoTableGateway');
-                     $table = new DepartamentoTable($tableGateway);
-                     return $table;
-                 },
-                 'DepartamentoTableGateway' => function ($sm) {
-                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
-                     $resultSetPrototype = new ResultSet();
-                     $resultSetPrototype->setArrayObjectPrototype(new Departamento());
-                     return new TableGateway('departamento', $dbAdapter, null, $resultSetPrototype);
-                 },
-				 'Compracerta\Model\EntradaprodutoTable' =>  function($sm) {
-                     $tableGateway = $sm->get('EntradaprodutoTableGateway');
-                     $table = new EntradaprodutoTable($tableGateway);
-                     return $table;
-                 },
-                 'EntradaprodutoTableGateway' => function ($sm) {
-                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
-                     $resultSetPrototype = new ResultSet();
-                     $resultSetPrototype->setArrayObjectPrototype(new Entradaproduto());
-                     return new TableGateway('entradaproduto', $dbAdapter, null, $resultSetPrototype);
-                 },
                  'Adapter' => function ($sm) {
                      return $sm->get('Zend\Db\Adapter\Adapter');
                  },
+                 'Compracerta\Storage\AuthStorage' => function($sm){
+                    return new \Compracerta\Storage\AuthStorage('econoom');  
+                },
+                'AuthService' => function($sm) {
+                    //My assumption, you've alredy set dbAdapter
+                    //and has users table with columns : user_name and pass_word
+                    //that password hashed with md5
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $dbTableAuthAdapter  = new DbTableAuthAdapter($dbAdapter, 
+                                                      'departamento','nm_dpto','passwd', 'MD5(?)');
+                     
+                    $authService = new AuthenticationService();
+                    $authService->setAdapter($dbTableAuthAdapter);
+                    $authService->setStorage($sm->get('Compracerta\Storage\AuthStorage'));
+                      
+                    return $authService;
+                },
              ),
          );
      }

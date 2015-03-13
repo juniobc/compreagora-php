@@ -149,13 +149,13 @@ class IndexController extends AbstractActionController
                 if(isset($object['priceMin']) && isset($object['priceMin']))
                     $arrayProduto[$cont]['preco_medio'] = number_format(($object['priceMin'] + $object['priceMax'])/2, 2);
                 
-                $productName = $object['productName'];
-                $productShortName = $object['productShortName'];
-                $currency = $object['currency'];
-                $priceMin = $object['priceMin'];
-                $priceMax = $object['priceMax'];
-                $links = $object['links'];
-                $thumbnail = $object['thumbnail'];
+                //$productName = $object['productName'];
+                //$productShortName = $object['productShortName'];
+                //$currency = $object['currency'];
+                //$priceMin = $object['priceMin'];
+                //$priceMax = $object['priceMax'];
+                //$links = $object['links'];
+                //$thumbnail = $object['thumbnail'];
                 //$rating = $object['rating'];
                 //$specification = $object['specification']['item'];
                 

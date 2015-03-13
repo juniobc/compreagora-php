@@ -6,64 +6,47 @@
  * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
+ 
 
 return array(
 	'router' => array(
-	    
 		'routes' => array(
+		    
+		    'inicio' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/compracerta/areatrabalho',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Compracerta\Controller',
+                        'controller'    => 'Areatrabalho',
+                        'action'        => 'Areatrabalho',
+                    ),
+                ),
+            ),
+            
+            'cadastro' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/compracerta/cadastroproduto',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Compracerta\Controller',
+                        'controller'    => 'Cadastroproduto',
+                        'action'        => 'index',
+                    ),
+                ),
+            ),
+		    
 			'home' => array(
-				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'type' => 'Segment',
 				'options' => array(
-					'route'    => '/',
+					'route'    => '/[:action]',
 					'defaults' => array(
 						'controller' => 'Compracerta\Controller\Home',
 						'action'     => 'index',
 					),
 				),
 				'may_terminate' => true,
-                'child_routes' => array(
-                    'default' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/[:controller[/:action]]',
-                            'constraints' => array(
-                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
-                            ),
-                            'defaults' => array(
-                            ),
-                        ),
-                    ),
-                ),
 			),
-			
-            'compracerta' => array(
-                'type'    => 'Literal',
-                'options' => array(
-                    'route'    => '/compracerta',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'Compracerta\Controller',
-                        'controller'    => 'Index',
-                        'action'        => 'index',
-                    ),
-                ),
-                'may_terminate' => true,
-                'child_routes' => array(
-                    'default' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/[:controller[/:action]]',
-                            'constraints' => array(
-                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
-                            ),
-                            'defaults' => array(
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-            
             
         ),
     ),
@@ -90,6 +73,8 @@ return array(
         'invokables' => array(
             'Compracerta\Controller\Index' => 'Compracerta\Controller\IndexController',
             'Compracerta\Controller\Home' => 'Compracerta\Controller\HomeController',
+            'Compracerta\Controller\Areatrabalho' => 'Compracerta\Controller\AreatrabalhoController',
+            'Compracerta\Controller\Cadastroproduto' => 'Compracerta\Controller\CadastroprodutoController',
         ),
     ),
     'view_manager' => array(
@@ -100,8 +85,7 @@ return array(
         'exception_template'       => 'error/index',
         'template_map' => array(
             'layout/layout'             => __DIR__ . '/../view/layout/layout.phtml',
-            'layout/teste'             => __DIR__ . '/../view/layout/teste.phtml',
-            'Compracerta/index/index'   => __DIR__ . '/../view/Compracerta/index/index.phtml',
+            'layout/sistema'             => __DIR__ . '/../view/layout/sistema.phtml',
             'error/index'               => __DIR__ . '/../view/error/index.phtml',
         ),
         'template_path_stack' => array(

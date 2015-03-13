@@ -1,2 +1,119 @@
+<?php //var_dump($messages);exit(1); ?>
+
+
 <script	type='text/javascript' src="<?php echo $this->basePath() . '/js/compracerta/home/home.js' ?>"></script>
+<script	type='text/javascript' src="<?php echo $this->basePath() . '/js/wow.min.js' ?>"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo $this->basePath() . '/css/home.css' ?>">
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            
+            <div class="modal-header">
+                <button id='fecha_modal' type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel" align='center' style='color:#2b669a'>Entrar</h4>
+            </div>
+            
+            <div class="modal-body">
+                <div id='error_msg' class="alert alert-danger" role="alert" style='display:none;'></div>
+            
+            <form id='frm_login' class="form-horizontal" method="post" action="" >
+                
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Usuario</label>
+                    <div class="col-sm-10">
+                    <input type="text" class="form-control " id="username" name="username" placeholder="Usuario">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">Senha</label>
+                    <div class="col-sm-10">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                    <div class="checkbox">
+                    <label>
+                    <input type="checkbox" id="rememberme" name="rememberme"> Lembrar
+                    </label>
+                    </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" id='login' class="btn btn-default">Entrar</button>
+                    </div>
+                </div>
+                
+            </form>
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<section style="background-image:url('<?php echo $this->basePath() . '/img/metrica-estoque.jpg' ?>')" id="top" class="home-slider" style="opacity: 1;">
+    <div class="container">
+        <div class="home-slider-caption">
+            <h1 class="wow bounceInLeft animated" style="visibility: visible;">Controle o Estoque
+        <br>Da sua empresa.</h1>
+            <p>Controle seu estoque e gerencie suas compras.
+            </p>
+            <a data-wow-delay="0.5s" class="btn cadastro btn-primary btn-icon active btn-lg btn-rounded wow bounceInUp animated" 
+            href="#" style="visibility: visible;-webkit-animation-delay: 0.5s; -moz-animation-delay: 0.5s; animation-delay: 0.5s;">
+                Cadastre -se<span class="fa fa-angle-right icon-with-btn"></span></a>
+            
+            <a data-toggle="modal" data-target="#myModal" data-wow-delay="0.7s" class="btn btn-outline dropdown-toggle  btn-white btn-icon btn-lg btn-rounded wow bounceInUp animated" href="#" 
+            style="visibility: visible;-webkit-animation-delay: 0.7s; -moz-animation-delay: 0.7s; animation-delay: 0.7s;">
+                Entrar<span class="fa fa-angle-right icon-with-btn">
+                    
+                    
+                </span></a>
+        </div>
+    </div>
+</section>
+
+
+<section id="services">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="section-heading">Serviços</h2>
+                <h3 class="section-sub-heading">Controle de estoque e gerenciamento de compras.</h3>
+            </div>
+        </div>
+        <div class="services">
+            <div class="row">
+                <div data-wow-delay="0.2s" class="service col-md-3 col-sm-6 col-xs-12 wow bounceInLeft animated" style="visibility: visible;-webkit-animation-delay: 0.2s; -moz-animation-delay: 0.2s; animation-delay: 0.2s;">
+                    <div class="fa-4x service-icon icon icon-Web animate-icon"></div>
+                    <h3>Entrada de materiais</h3>
+                    <p>Faça a entradade de materiais pelo codigo de barras da nota fiscal.</p>
+                    <a data-wow-delay="0.1s" class="btn btn-outline btn-primary btn-medium btn-rounded wow bounceInUp animated" href="#" style="visibility: visible;-webkit-animation-delay: 0.1s; -moz-animation-delay: 0.1s; animation-delay: 0.1s;">read more</a>
+                </div>
+                <div data-wow-delay="0.3s" class="service col-md-3  col-sm-6 col-xs-12 wow bounceInLeft animated" style="visibility: visible;-webkit-animation-delay: 0.3s; -moz-animation-delay: 0.3s; animation-delay: 0.3s;">
+                    <div class="fa-4x service-icon icon icon-ChemicalGlass animate-icon"></div>
+                    <h3>fully tested</h3>
+                    <p>From the first pixel.</p>
+                    <a data-wow-delay="0.2s" class="btn btn-outline btn-primary btn-medium btn-rounded wow bounceInUp animated" href="#" style="visibility: visible;-webkit-animation-delay: 0.2s; -moz-animation-delay: 0.2s; animation-delay: 0.2s;">read more</a>
+                </div>
+                <div data-wow-delay="0.4s" class="service col-md-3  col-sm-6 col-xs-12 wow bounceInRight animated" style="visibility: visible;-webkit-animation-delay: 0.4s; -moz-animation-delay: 0.4s; animation-delay: 0.4s;">
+                    <div class="fa-4x service-icon icon icon-Phone animate-icon"></div>
+                    <h3>Responsive</h3>
+                    <p>For every device.</p>
+                    <a data-wow-delay="0.3s" class="btn btn-outline btn-primary btn-medium btn-rounded wow bounceInUp animated" href="#" style="visibility: visible;-webkit-animation-delay: 0.3s; -moz-animation-delay: 0.3s; animation-delay: 0.3s;">read more</a>
+                </div>
+                <div data-wow-delay="0.5s" class="service col-md-3  col-sm-6 col-xs-12 wow bounceInRight animated" style="visibility: visible;-webkit-animation-delay: 0.5s; -moz-animation-delay: 0.5s; animation-delay: 0.5s;">
+                    <div class="fa-4x service-icon icon icon-Mouse animate-icon"></div>
+                    <h3>Easy-to-use</h3>
+                    <p>And easy to customize.</p>
+                    <a data-wow-delay="0.4s" class="btn btn-outline btn-primary btn-medium btn-rounded wow bounceInUp animated" href="#" style="visibility: visible;-webkit-animation-delay: 0.4s; -moz-animation-delay: 0.4s; animation-delay: 0.4s;">read more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
