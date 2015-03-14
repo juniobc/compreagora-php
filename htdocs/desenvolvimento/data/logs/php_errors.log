@@ -124,3 +124,21 @@ Stack trace:
 [14-Mar-2015 01:14:50 America/Sao_Paulo] PHP Notice:  Undefined variable: ret in /home/ubuntu/workspace/htdocs/desenvolvimento/module/Compracerta/src/Compracerta/Controller/CadastroprodutoController.php on line 95
 [14-Mar-2015 01:44:18 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '}' in /home/ubuntu/workspace/htdocs/desenvolvimento/module/Compracerta/src/Compracerta/Controller/Plugin/Consultahtml.php on line 63
 [14-Mar-2015 01:45:35 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '}' in /home/ubuntu/workspace/htdocs/desenvolvimento/module/Compracerta/src/Compracerta/Controller/Plugin/Consultahtml.php on line 63
+[14-Mar-2015 02:54:21 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '$response' (T_VARIABLE) in /home/ubuntu/workspace/htdocs/desenvolvimento/module/Compracerta/src/Compracerta/Controller/CadastroprodutoController.php on line 126
+[14-Mar-2015 02:54:40 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in /home/ubuntu/workspace/htdocs/desenvolvimento/module/Compracerta/src/Compracerta/Controller/Plugin/ControllerHelper.php on line 12
+[14-Mar-2015 02:55:12 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in /home/ubuntu/workspace/htdocs/desenvolvimento/module/Compracerta/src/Compracerta/Controller/Plugin/ControllerHelper.php on line 12
+[14-Mar-2015 03:00:13 America/Sao_Paulo] PHP Fatal error:  Call to undefined method Compracerta\Controller\Plugin\ControllerHelper::envia_json() in /home/ubuntu/workspace/htdocs/desenvolvimento/module/Compracerta/src/Compracerta/Controller/CadastroprodutoController.php on line 122
+[14-Mar-2015 03:13:32 America/Sao_Paulo] PHP Notice:  Uninitialized string offset: 0 in /home/ubuntu/workspace/htdocs/desenvolvimento/module/Compracerta/src/Compracerta/Controller/Plugin/Consultahtml.php on line 55
+[14-Mar-2015 03:13:32 America/Sao_Paulo] PHP Notice:  Undefined offset: 1 in /home/ubuntu/workspace/htdocs/desenvolvimento/module/Compracerta/src/Compracerta/Controller/Plugin/Consultahtml.php on line 57
+[14-Mar-2015 03:21:51 America/Sao_Paulo] PHP Fatal error:  Uncaught exception 'Zend\Stdlib\Exception\InvalidCallbackException' with message 'Invalid callback provided; not callable' in /home/ubuntu/workspace/htdocs/vendor/ZF2/Zend/Stdlib/CallbackHandler.php:62
+Stack trace:
+#0 /home/ubuntu/workspace/htdocs/vendor/ZF2/Zend/Stdlib/CallbackHandler.php(49): Zend\Stdlib\CallbackHandler->registerCallback(Array)
+#1 /home/ubuntu/workspace/htdocs/vendor/ZF2/Zend/EventManager/EventManager.php(305): Zend\Stdlib\CallbackHandler->__construct(Array, Array)
+#2 /home/ubuntu/workspace/htdocs/desenvolvimento/module/Compracerta/Module.php(37): Zend\EventManager\EventManager->attach('dispatch.error', Array)
+#3 [internal function]: Compracerta\Module->onBootstrap(Object(Zend\Mvc\MvcEvent))
+#4 /home/ubuntu/workspace/htdocs/vendor/ZF2/Zend/EventManager/EventManager.php(468): call_user_func(Array, Object(Zend\Mvc\MvcEvent))
+#5 /home/ubuntu/workspace/htdocs/vendor/ZF2/Zend/EventManager/EventManager.php(207): Zend\EventManager\EventManager->triggerListeners('bootstrap', Object(Zend\Mvc\MvcEven in /home/ubuntu/workspace/htdocs/vendor/ZF2/Zend/Stdlib/CallbackHandler.php on line 62
+[14-Mar-2015 11:31:17 America/Sao_Paulo] PHP Notice:  Array to string conversion in /home/ubuntu/workspace/htdocs/desenvolvimento/module/Compracerta/src/Compracerta/Controller/CadastroprodutoController.php on line 117
+[14-Mar-2015 11:33:57 America/Sao_Paulo] PHP Notice:  Uninitialized string offset: 0 in /home/ubuntu/workspace/htdocs/desenvolvimento/module/Compracerta/src/Compracerta/Controller/Plugin/Consultahtml.php on line 55
+[14-Mar-2015 11:33:57 America/Sao_Paulo] PHP Notice:  Undefined offset: 1 in /home/ubuntu/workspace/htdocs/desenvolvimento/module/Compracerta/src/Compracerta/Controller/CadastroprodutoController.php on line 117
+[14-Mar-2015 11:48:38 America/Sao_Paulo] PHP Notice:  Uninitialized string offset: 1 in /home/ubuntu/workspace/htdocs/desenvolvimento/module/Compracerta/src/Compracerta/Controller/CadastroprodutoController.php on line 117
