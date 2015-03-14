@@ -39,12 +39,12 @@ function consulta_nf(){
 	 	$('#error_msg').append( "<p>"+retorno['msg']+"</p>" );
 		
 	}, 'json'
-	).error(function() { 
+	);/*.error(function() { 
 		
 		$('#error_msg').show();
 	 	$('#error_msg').append( "<p>Tente Novamente</p>" );
 		
-	});
+	});*/
 	
 	return false;
     

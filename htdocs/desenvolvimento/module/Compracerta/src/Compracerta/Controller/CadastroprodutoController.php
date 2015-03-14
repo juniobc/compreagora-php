@@ -66,13 +66,14 @@ class CadastroprodutoController extends AbstractActionController{
             $this->getServiceLocator()->get('texto')->info('token: '.$request->getPost('token'));
             
             if(empty($request->getPost('chave_acesso'))){
-                
                 $ret = 0;
             
                 $dados = array(
                     'ret' => $ret,
                     'msg' => 'Informe o número da nota fiscal!'
                 );
+                
+                return $this->envia_json($dados);
                 
             }
             
@@ -84,6 +85,8 @@ class CadastroprodutoController extends AbstractActionController{
                     'ret' => $ret,
                     'msg' => 'Informe a imagem!'
                 );
+                
+                return $this->envia_json($dados);
                 
             }
             
@@ -109,30 +112,34 @@ class CadastroprodutoController extends AbstractActionController{
             
             $conexao = $this->Consultahtml()->conexaoCurl($url, $postdata);
             
+            if(!empty($this->Consultahtml()->nf_error($conexao))){
+                
+                $ret = 0;
             
-            $this->getServiceLocator()->get('texto')->info('texto: '.$this->Consultahtml()->nf_error($conexao)[0]);
+                $dados = array(
+                    'ret' => $ret,
+                    'msg' => 'Código da imagem incorreto!'
+                );
+                
+                return $this->envia_json($dados);
+                
+            }else{
+                
+                $ret = 1;
             
-            $ret = 0;
+                $dados = array(
+                    'ret' => $ret,
+                    'msg' => 'Passou!'
+                );
+                
+                return $this->envia_json($dados);
+                
+            }
             
-            $dados = array(
-                'ret' => $ret,
-                'msg' => utf8_encode($this->Consultahtml()->nf_error($conexao)[0])
-            );
+            //$this->getServiceLocator()->get('texto')->info('texto: '.$conexao);
+            //$this->getServiceLocator()->get('texto')->info('texto: '.$this->Consultahtml()->nf_error($conexao)[1]);
             
-            $response = $this->getResponse();
-            
-            $response->setContent(json_encode($dados));
-            //$response->setContent($result);
-            
-            $headers = $response->getHeaders();
-            $headers->addHeaderLine('Content-Type', 'application/json');
-        
-            return $response;
-            
-           //echo "passou";
            //exit(1);
-            
-            $error = $this->getData(urldecode($result), '<legend class="titulo-aba">Dados da NF-e','</legend>');
             
             $cont = 1;
             $produtos = array();
@@ -372,6 +379,20 @@ class CadastroprodutoController extends AbstractActionController{
         
         return $response;
 
+    }
+    
+    private function envia_json($dados){
+        
+        $response = $this->getResponse();
+            
+        $response->setContent(json_encode($dados));
+        //$response->setContent($result);
+        
+        $headers = $response->getHeaders();
+        $headers->addHeaderLine('Content-Type', 'application/json');
+    
+        return $response;
+        
     }
 
     

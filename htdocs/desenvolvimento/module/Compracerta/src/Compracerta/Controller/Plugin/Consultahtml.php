@@ -50,11 +50,13 @@ class Consultahtml extends AbstractPlugin{
     
     public function nf_error($html){
         
-        $error = $this->percorre_html($html, 'tituloConteudoConsulta', '</li></ul>');
+        $error = $this->percorre_html($html, 'listaErro', '</li>');
             
-        $error = explode("<li>", $error[0]);
+        //$error = explode("<li>", $error[0]);
         
-        return explode("</li>", $error[1]);
+        //$error = explode("</li>", $error[1]);
+        
+        return $error;
         
     }
     
