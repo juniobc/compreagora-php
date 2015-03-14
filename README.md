@@ -10,7 +10,7 @@ Gerenciamento do consumo de material.
 * TWITTER BOOTSRAP
 * CURL
 * ZEND 2.3.+
-* POSTGRE
+* POSTGRES
 
 #Instalação
 
