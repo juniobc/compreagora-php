@@ -15,4 +15,4 @@ Gerenciamento do consumo de material.
 #Instalação
 
 Baixe o repositorio e copie o conteudo da subpasta produção ou desenvolvimento
-para dentro de seu servidor apache. O aquivo index esta na pasta public.
+para dentro de seu servidor php. O aquivo index esta na pasta public.
