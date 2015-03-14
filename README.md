@@ -6,13 +6,13 @@ Gerenciamento do consumo de material.
 
 #Requisitos
 
-PHP 5.5.+
-CURL
-TWITTER BOOTSRAP
-ZEND 2.3.+
-POSTGRE
+* PHP 5.5.+
+* TWITTER BOOTSRAP
+* CURL
+* ZEND 2.3.+
+* POSTGRE
 
-#INSTALAÇÃO
+#Instalação
 
 Baixe o repositorio e copie o conteudo da subpasta produção ou desenvolvimento
 para dentro de seu servidor apache. O aquivo index esta na pasta public.
