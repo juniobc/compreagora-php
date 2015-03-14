@@ -27,6 +27,13 @@ return array(
                 $log->addWriter($writer);
         
                 return $log;
+            },
+            'texto' => function ($sm) {
+                $texto = new Zend\Log\Logger();
+                $writer = new Zend\Log\Writer\Stream('data/arquivos/texto.txt');
+                $texto->addWriter($writer);
+        
+                return $texto;
             }
          ),
          

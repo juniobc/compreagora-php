@@ -65,7 +65,7 @@ class HomeController extends AbstractActionController{
             
             if($request->getPost('username') == ""){
                 
-                $this->flashmessenger()->addMessage("O campo usuário não pode estar vazio !");
+                $this->flashmessenger()->addMessage("O campo usuário não pode estar vazio!");
                 $return = 1;
                 
                 
@@ -73,7 +73,7 @@ class HomeController extends AbstractActionController{
             
             if($request->getPost('password') == ""){
                 
-                $this->flashmessenger()->addMessage('O campo senha não pode estar vazio !');
+                $this->flashmessenger()->addMessage('O campo senha não pode estar vazio!');
                 $return = 1;
                 
                 

@@ -31,7 +31,22 @@ return array(
                     'defaults' => array(
                         '__NAMESPACE__' => 'Compracerta\Controller',
                         'controller'    => 'Cadastroproduto',
-                        'action'        => 'index',
+                        'action'        => 'cadastroproduto',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'default' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/[:action]',
+                            'constraints' => array(
+                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ),
+                            'defaults' => array(
+                            ),
+                        ),
                     ),
                 ),
             ),
@@ -76,6 +91,12 @@ return array(
             'Compracerta\Controller\Areatrabalho' => 'Compracerta\Controller\AreatrabalhoController',
             'Compracerta\Controller\Cadastroproduto' => 'Compracerta\Controller\CadastroprodutoController',
         ),
+    ),
+    'controller_plugins' => array(
+        'invokables' => array(
+            'Consultahtml' => 'Compracerta\Controller\Plugin\Consultahtml',
+            'ControllerHelper' => 'Compracerta\Controller\Plugin\ControllerHelper'
+        )
     ),
     'view_manager' => array(
         'display_not_found_reason' => true,
