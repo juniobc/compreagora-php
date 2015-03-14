@@ -1,3 +1,2 @@
-# compreagora-php
+# Controle de Estoque  
 
-Biblioteca de integração PagSeguro para PHP
