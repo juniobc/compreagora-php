@@ -1,5 +1,26 @@
 <script	type='text/javascript' src="<?php echo $this->basePath() . '/js/compracerta/cadastroproduto/cadastroproduto.js' ?>"></script>
 
+<style type="text/css">
+			
+            #loading-indicator {
+              position: absolute;
+              left: 50%;
+              top: 50%;
+            }
+            
+            .modal-content{
+                
+                border:0px;
+                
+            }
+            
+            a:hover {
+                color: #428bca;
+                text-decoration: none;
+                cursor: pointer;
+            }
+			
+	    </style>
 
 <div class="row">
     <div class="col-lg-6">
@@ -23,29 +44,49 @@
                     <input id='token' type="hidden" name="token" value="<?php echo $token ?>" />
                     
                     <div class="form-group">
-                        <label class="col-sm-7 control-label">
-                        
-                            <img src='data:image/png;base64<?php echo $img ?>'/>
-                        
-                        </label>
-                    </div>
-                    
-                    <div class="form-group">
                         <div class="col-sm-5 col-sm-offset-3">
-                            <input id="captcha" name="captcha" type="text" class="form-control" placeholder="Digite a imagem">
+                            <img id="img_captcha" src='data:image/png;base64<?php echo $img ?>'/>
                         </div>
                     </div>
                     
                     <div class="form-group">
+                        <div class="col-sm-3 col-sm-offset-3">
+                            <input id="captcha" name="captcha" type="text" class="form-control" placeholder="Imagem">
+                        </div>
+                       <label class="control-label"><a id="recarrega_img" class="glyphicon glyphicon-refresh" aria-hidden="true"></a></label>
+                    </div>
+                    
+                    <div class="form-group">
                         <div class="col-sm-7 col-sm-offset-3">
-                            <input id="chave_acesso" value='52150202430968000345550060001306821712975467' name="chave_acesso" type="text" class="form-control" placeholder="Numero da nota fiscal">
+                            <input id="chave_acesso" value='31150125759366000170550010048083601049579617' name="chave_acesso" type="text" class="form-control" placeholder="Numero da nota fiscal">
                         </div>
                     </div>
                     
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-10">
-                            <button id="consulta_nf" type="submit" class="btn btn-default">Buscar Nota Fiscal</button>
+                            <button id="consulta_nf" type="submit" class="btn btn-default" >Buscar Nota Fiscal</button>
                         </div>
+                    </div>
+                    
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        
+                        <div class="modal-dialog">
+                        
+                            <div class="modal-content">
+                                <div id="loading-indicator">
+                                    
+                                    <img  style="border-radius: 30px; -moz-border-radius: 30px; 
+                                    -khtml-border-radius: 30px; -webkit-border-radius: 30px;"
+                                    src="<?php echo $this->basePath() . '/img/carregando.gif' ?>" />
+                                
+                                    <font color="white">carregando !</font>
+                                
+                                </div>
+                            
+                            </div>
+                        
+                        </div>
+                    
                     </div>
                     
                 </form>
@@ -63,6 +104,8 @@
             </div>
             
             <div class="panel-body">
+                
+                <div id="table_div"></div>
                 
             </div>
             
